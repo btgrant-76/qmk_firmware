@@ -44,6 +44,13 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 //};
 
 
+enum custom_keycodes {
+    SCRN2CLP = SAFE_RANGE, // macOS take screenshot to the clip board
+    SCRN2FL, // macOS take screenshot to a file
+    Z_MUTE  // Toggle Zoom mute KC.LGUI(KC.LSFT(KC.A))
+};
+
+
 // TODO try mod tap aliases
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -55,7 +62,7 @@ LT(1,KC_ESC),LCTL_T(KC_A),LALT_T(KC_S),LGUI_T(KC_D),LSFT_T(KC_F),LT(1,KC_G),   L
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ENT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, MO(2),  KC_LSFT,    LCMD(KC_LBRC),MEH_T(KC_SPC),MO(3)  // TODO replace inner keys with shift/back Tap Dance, forward
+                                    LCMD(KC_RBRC),   MO(2), KC_LSFT,LCMD(KC_LBRC),MEH_T(KC_SPC),MO(3)  // TODO replace inner keys with shift/back Tap Dance, forward
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -90,9 +97,9 @@ KC_LCTL,LCTL_T(KC_PIPE),LALT_T(KC_BSLS),LGUI_T(KC_PLUS),LSFT_T(KC_EQL),RGB_MOD, 
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, RGB_HUI,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, KC_PGUP,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_HUD,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PGDN, // TODO Macro
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_HUD,                      XXXXXXX, XXXXXXX, SCRN2FL,SCRN2CLP, XXXXXXX, KC_PGDN, // TODO Macros
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, _______, XXXXXXX // TODO Macro
+                                          XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,  Z_MUTE, XXXXXXX // TODO Macro
                                       //`--------------------------'  `--------------------------'
   )
 };
@@ -117,10 +124,10 @@ void oled_render_layer_state(void) {
             oled_write_ln_P(PSTR("Default"), false);
             break;
         case L_LOWER:
-            oled_write_ln_P(PSTR("Lower"), false);
+            oled_write_ln_P(PSTR("Number"), false);
             break;
         case L_RAISE:
-            oled_write_ln_P(PSTR("Raise"), false);
+            oled_write_ln_P(PSTR("Symbol"), false);
             break;
         case L_ADJUST:
         case L_ADJUST|L_LOWER:
@@ -193,11 +200,44 @@ bool oled_task_user(void) {
     }
     return false;
 }
+#endif // OLED_ENABLE
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     set_keylog(keycode, record);
   }
+  switch(keycode) {
+    case SCRN2CLP:
+        register_code(KC_LGUI);
+        register_code(KC_LCTRL);
+        register_code(KC_LSHIFT);
+        register_code(KC_4);
+
+        unregister_code(KC_LGUI);
+        unregister_code(KC_LCTRL);
+        unregister_code(KC_LSHIFT);
+        unregister_code(KC_4);
+        return false;
+    case SCRN2FL:
+        register_code(KC_LGUI);
+        register_code(KC_LSHIFT);
+        register_code(KC_4);
+
+        unregister_code(KC_LGUI);
+        unregister_code(KC_LSHIFT);
+        unregister_code(KC_4);
+        return false;
+    case Z_MUTE:
+        register_code(KC_LGUI);
+        register_code(KC_LSHIFT);
+        register_code(KC_A);
+
+        unregister_code(KC_LGUI);
+        unregister_code(KC_LSHIFT);
+        unregister_code(KC_A);
+        return false;
+  }
+
   return true;
 }
-#endif // OLED_ENABLE
+//#endif // OLED_ENABLE
