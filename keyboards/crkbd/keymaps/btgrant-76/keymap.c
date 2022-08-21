@@ -83,9 +83,9 @@ LT(1,KC_ESC),LCTL_T(KC_A),LALT_T(KC_S),LGUI_T(KC_D),LSFT_T(KC_F),LT(1,KC_G),   L
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_GRV, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-KC_LCTL,LCTL_T(KC_PIPE),LALT_T(KC_BSLS),LGUI_T(KC_PLUS),LSFT_T(KC_EQL),RGB_MOD,  XXXXXXX, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, KC_TILD,
+      KC_LCTL, KC_PIPE, KC_BSLS, KC_PLUS, KC_EQL , XXXXXXX,                       KC_EQL, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, KC_TILD,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, RGB_TOG,RGB_RMOD,                      XXXXXXX, KC_MINS, KC_UNDS, XXXXXXX, XXXXXXX, XXXXXXX,
+      _______, RGB_VAI, RGB_SAI, RGB_HUI, RGB_TOG,RGB_RMOD,                      KC_PLUS, KC_MINS, KC_UNDS, KC_PIPE, KC_BSLS, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
@@ -95,9 +95,9 @@ KC_LCTL,LCTL_T(KC_PIPE),LALT_T(KC_BSLS),LGUI_T(KC_PLUS),LSFT_T(KC_EQL),RGB_MOD, 
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                        KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,  // TODO introduce Tap Dance
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, RGB_HUI,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, KC_PGUP,
+      KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, KC_PGUP,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_HUD,                      XXXXXXX, XXXXXXX, SCRN2FL,SCRN2CLP, XXXXXXX, KC_PGDN, // TODO Macros
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, SCRN2FL,SCRN2CLP, XXXXXXX, KC_PGDN, // TODO Macros
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,  Z_MUTE, XXXXXXX // TODO Macro
                                       //`--------------------------'  `--------------------------'
