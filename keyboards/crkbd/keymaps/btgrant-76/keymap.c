@@ -208,33 +208,39 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   switch(keycode) {
     case SCRN2CLP:
-        register_code(KC_LGUI);
-        register_code(KC_LCTRL);
-        register_code(KC_LSHIFT);
-        register_code(KC_4);
+        if (record->event.pressed) {
+            register_code(KC_LGUI);
+            register_code(KC_LCTRL);
+            register_code(KC_LSHIFT);
+            register_code(KC_4);
 
-        unregister_code(KC_LGUI);
-        unregister_code(KC_LCTRL);
-        unregister_code(KC_LSHIFT);
-        unregister_code(KC_4);
+            unregister_code(KC_LGUI);
+            unregister_code(KC_LCTRL);
+            unregister_code(KC_LSHIFT);
+            unregister_code(KC_4);
+        }
         return false;
     case SCRN2FL:
-        register_code(KC_LGUI);
-        register_code(KC_LSHIFT);
-        register_code(KC_4);
+        if (record->event.pressed) {
+            register_code(KC_LGUI);
+            register_code(KC_LSHIFT);
+            register_code(KC_4);
 
-        unregister_code(KC_LGUI);
-        unregister_code(KC_LSHIFT);
-        unregister_code(KC_4);
+            unregister_code(KC_LGUI);
+            unregister_code(KC_LSHIFT);
+            unregister_code(KC_4);
+        }
         return false;
     case Z_MUTE:
-        register_code(KC_LGUI);
-        register_code(KC_LSHIFT);
-        register_code(KC_A);
+        if (record->event.pressed) {
+            register_code(KC_LGUI);
+            register_code(KC_LSHIFT);
+            register_code(KC_A);
 
-        unregister_code(KC_LGUI);
-        unregister_code(KC_LSHIFT);
-        unregister_code(KC_A);
+            unregister_code(KC_LGUI);
+            unregister_code(KC_LSHIFT);
+            unregister_code(KC_A);
+        }
         return false;
   }
 
