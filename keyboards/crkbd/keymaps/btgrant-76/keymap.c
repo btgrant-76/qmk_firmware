@@ -23,35 +23,65 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Tap Dance declarations
 enum {
     TD_ESC_CAPS,
+    TD_RBRC
+};
+
+enum custom_keycodes {
+    SCRN2CLP = SAFE_RANGE, // macOS take screenshot to the clip board
+    SCRN2FL,   // macOS take screenshot to a file
+    Z_MUTE,    // toggle Zoom mute
+    BRC_INST,  // type a pair of braces & move the cursor between them // TODO ] x2 or [] combo
+    CBR_INST,  // type a pair of curly braces & move the cursor between them // TODO } x2 or {} combo
+    CODE_INST, // type a Markdown code fence & move the cursor inside // TODO ???
+    GRV_INST,  // type a pair of backticks & move the cursor between them // TODO ` x2
+    PRN_INST,  // type a pair of parens move the cursor between them // TODO ) x2 or () combo
+    QUO_INST,  // type a pair of double quotes & move the cursor between them // TODO " x2
+    UP_DIR,    // type ../
+    VIM_COPY   //
+};
+
+
+void brace_insert_macro(void) {
+    SEND_STRING("[]");
+    tap_code(KC_LEFT);
+};
+
+void curly_brace_insert_macro(void) {
+    SEND_STRING("{}");
+    tap_code(KC_LEFT);
+};
+
+
+void parens_insert_macro(void) {
+    SEND_STRING("()");
+    tap_code(KC_LEFT);
+};
+
+
+void braces_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        tap_code(KC_RBRC);
+    } else {
+        brace_insert_macro();
+//        SEND_STRING("[]");
+//        tap_code(KC_LEFT);
+    }
 };
 
 // Tap Dance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Escape, twice for Caps Lock
     [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
+    [TD_RBRC] = ACTION_TAP_DANCE_FN(braces_tap_dance)
 };
+
+
 /* Tap Dance TODOs
  * TODO define tap dance actions
  * TODO add the actions to the keymap
  */
 
-
-//const uint16_t PROGMEM test_combo1[] = {KC_A, KC_B, COMBO_END};
-//const uint16_t PROGMEM test_combo2[] = {KC_C, KC_D, COMBO_END};
-//combo_t key_combos[COMBO_COUNT] = {
-//    COMBO(test_combo1, KC_ESC),
-//    COMBO(test_combo2, LCTL(KC_Z)), // keycodes with modifiers are possible too!
-//};
-
-
-enum custom_keycodes {
-    SCRN2CLP = SAFE_RANGE, // macOS take screenshot to the clip board
-    SCRN2FL, // macOS take screenshot to a file
-    Z_MUTE  // Toggle Zoom mute KC.LGUI(KC.LSFT(KC.A))
-};
-
-
-// TODO try mod tap aliases
+// TODO try mod tap aliases, or this instead:  https://docs.qmk.fm/#/faq_keymap?id=how-can-i-make-custom-names-for-complex-keycodes
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_split_3x6_3(
@@ -62,7 +92,7 @@ LT(1,KC_ESC),LCTL_T(KC_A),LALT_T(KC_S),LGUI_T(KC_D),LSFT_T(KC_F),LT(1,KC_G),   L
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ENT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                    LCMD(KC_RBRC),   MO(2), KC_LSFT,LCMD(KC_LBRC),MEH_T(KC_SPC),MO(3)  // TODO replace inner keys with shift/back Tap Dance, forward
+                                    LCMD(KC_LBRC),   MO(2), KC_LSFT,MEH_T(KC_SPC), MO(3),LCMD(KC_RBRC)
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -75,7 +105,7 @@ LT(1,KC_ESC),LCTL_T(KC_A),LALT_T(KC_S),LGUI_T(KC_D),LSFT_T(KC_F),LT(1,KC_G),   L
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, KC_VOLD, XXXXXXX, KC_MPRV, KC_MNXT, KC_BRID,                      KC_PAST,    KC_1,    KC_2,    KC_3, KC_PPLS, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, KC_MPLY,KC_SPC/*M8*/,KC_ENT/*M10*/,KC_0, KC_DOT  // TODO Macro 8 & 10
+                                          KC_LGUI, KC_MPLY, _______,/*M8*/KC_ENT/*M10*/,KC_0, KC_DOT  // TODO Macro 8 & 10
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -83,11 +113,11 @@ LT(1,KC_ESC),LCTL_T(KC_A),LALT_T(KC_S),LGUI_T(KC_D),LSFT_T(KC_F),LT(1,KC_G),   L
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_GRV, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_PIPE, KC_BSLS, KC_PLUS, KC_EQL , XXXXXXX,                       KC_EQL, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, KC_TILD,
+      KC_LCTL, KC_PIPE, KC_BSLS, KC_PLUS, KC_EQL , XXXXXXX,                       KC_EQL, KC_LBRC,TD(TD_RBRC),KC_LCBR, KC_RCBR, KC_TILD,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, RGB_VAI, RGB_SAI, RGB_HUI, RGB_TOG,RGB_RMOD,                      KC_PLUS, KC_MINS, KC_UNDS, KC_PIPE, KC_BSLS, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX
+                                          XXXXXXX, XXXXXXX, _______,    XXXXXXX, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -97,9 +127,9 @@ LT(1,KC_ESC),LCTL_T(KC_A),LALT_T(KC_S),LGUI_T(KC_D),LSFT_T(KC_F),LT(1,KC_G),   L
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, KC_PGUP,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, SCRN2FL,SCRN2CLP, XXXXXXX, KC_PGDN, // TODO Macros
+      _______, XXXXXXX, XXXXXXX,BRC_INST, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, SCRN2FL,SCRN2CLP,  UP_DIR, KC_PGDN, // TODO Macros
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,  Z_MUTE, XXXXXXX // TODO Macro
+                                          XXXXXXX, XXXXXXX, _______,     Z_MUTE, XXXXXXX, XXXXXXX // TODO Macros
                                       //`--------------------------'  `--------------------------'
   )
 };
@@ -178,7 +208,6 @@ void render_bootmagic_status(bool status) {
         oled_write_ln_P(logo[0][1], false);
     } else {
         oled_write_ln_P(logo[1][0], false);
-        oled_write_ln_P(logo[1][1], false);
     }
 }
 
@@ -242,8 +271,91 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             unregister_code(KC_A);
         }
         return false;
+    case BRC_INST:
+        if (record->event.pressed) {
+            brace_insert_macro();
+//            SEND_STRING("[]");
+//            tap_code(KC_LEFT);
+        }
+        return false;
+    case CBR_INST:
+        if (record->event.pressed) {
+            SEND_STRING("{}");
+            tap_code(KC_LEFT);
+        }
+        return false;
+    case PRN_INST:
+        if (record->event.pressed) {
+            SEND_STRING("()");
+            tap_code(KC_LEFT);
+        }
+        return false;
+    case GRV_INST:
+        if (record->event.pressed) {
+            SEND_STRING("``");
+            tap_code(KC_LEFT);
+        }
+        return false;
+    case QUO_INST:
+        if (record->event.pressed) {
+            SEND_STRING("\"\"");
+            tap_code(KC_LEFT);
+        }
+        return false;
+    case UP_DIR:
+        if (record->event.pressed) {
+            SEND_STRING("../");
+        }
+        return false;
+//    CODE_INST,
   }
 
   return true;
 }
+
 //#endif // OLED_ENABLE
+#ifdef COMBO_ENABLE
+// Combo declarations
+enum combos {
+    CB_BRC_INST,
+    CB_CBR_INST,
+    CB_PRN_INST,
+    COMBO_LENGTH
+};
+
+const uint16_t PROGMEM brc_inst[] = {KC_RBRC, KC_LBRC, COMBO_END};
+const uint16_t PROGMEM cbr_inst[] = {KC_RCBR, KC_LCBR, COMBO_END};
+const uint16_t PROGMEM prn_inst[] = {KC_RCBR, KC_LCBR, COMBO_END};
+
+uint16_t COMBO_LEN = COMBO_LENGTH;
+
+combo_t key_combos[] = {
+    [CB_BRC_INST] = COMBO_ACTION(brc_inst),
+    [CB_CBR_INST] = COMBO_ACTION(cbr_inst),
+    [CB_PRN_INST] = COMBO_ACTION(prn_inst),
+};
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch(combo_index) {
+        case CB_BRC_INST:
+            if (pressed) {
+                brace_insert_macro()
+//                SEND_STRING("[]");
+//                tap_code(KC_LEFT);
+            }
+            break;
+        case CB_CBR_INST:
+            if (pressed) {
+                SEND_STRING("{}");
+                tap_code(KC_LEFT);
+            }
+            break;
+        case CB_PRN_INST:
+            if (pressed) {
+                SEND_STRING("()");
+                tap_code(KC_LEFT);
+            }
+            break;
+    }
+};
+#endif // COMBO_ENABLED
