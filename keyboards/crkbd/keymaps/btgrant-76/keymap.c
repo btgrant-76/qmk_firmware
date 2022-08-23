@@ -20,12 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 #include <stdio.h>
 
-// Tap Dance declarations
-enum {
-    TD_ESC_CAPS,
-    TD_RBRC
-};
-
 enum custom_keycodes {
     SCRN2CLP = SAFE_RANGE, // macOS take screenshot to the clip board
     SCRN2FL,   // macOS take screenshot to a file
@@ -57,28 +51,67 @@ void parens_insert_macro(void) {
     tap_code(KC_LEFT);
 };
 
+void grave_pair_cursor_insertion(void) {
+    SEND_STRING("``");
+    tap_code(KC_LEFT);
+}
 
 void braces_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         tap_code(KC_RBRC);
     } else {
         brace_insert_macro();
-//        SEND_STRING("[]");
-//        tap_code(KC_LEFT);
     }
+};
+
+void curly_brace_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        register_code(KC_LSHIFT);
+        tap_code(KC_RBRC);
+        unregister_code(KC_LSHIFT);
+    } else {
+        curly_brace_insert_macro();
+    }
+};
+
+void parens_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        SEND_STRING(")");
+    } else {
+        parens_insert_macro();
+    }
+};
+
+void grave_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 2) {
+        grave_pair_cursor_insertion();
+    } else {
+        SEND_STRING("`");
+    }
+};
+
+// Tap Dance declarations
+enum {
+    TD_ESC_CAPS,
+    TD_RBRC,
+    TD_RCBR,
+    TD_RPRN,
+    TD_GRAV,
 };
 
 // Tap Dance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Escape, twice for Caps Lock
     [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
-    [TD_RBRC] = ACTION_TAP_DANCE_FN(braces_tap_dance)
+    [TD_RBRC] = ACTION_TAP_DANCE_FN(braces_tap_dance),
+    [TD_RCBR] = ACTION_TAP_DANCE_FN(curly_brace_tap_dance),
+    [TD_RPRN] = ACTION_TAP_DANCE_FN(parens_tap_dance),
+    [TD_GRAV] = ACTION_TAP_DANCE_FN(grave_tap_dance),
 };
 
 
 /* Tap Dance TODOs
- * TODO define tap dance actions
- * TODO add the actions to the keymap
+ * TODO add Tap Dance actions for IDEA F-row
  */
 
 // TODO try mod tap aliases, or this instead:  https://docs.qmk.fm/#/faq_keymap?id=how-can-i-make-custom-names-for-complex-keycodes
@@ -99,7 +132,7 @@ LT(1,KC_ESC),LCTL_T(KC_A),LALT_T(KC_S),LGUI_T(KC_D),LSFT_T(KC_F),LT(1,KC_G),   L
 
   [1] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,
+      XXXXXXX,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, KC_VOLU, KC_MUTE, XXXXXXX,LSFT(KC_SCLN),KC_BRIU,                  KC_SLSH,    KC_4,    KC_5,    KC_6, KC_PMNS, KC_PENT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -111,9 +144,9 @@ LT(1,KC_ESC),LCTL_T(KC_A),LALT_T(KC_S),LGUI_T(KC_D),LSFT_T(KC_F),LT(1,KC_G),   L
 
   [2] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_GRV, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,  KC_DEL,
+  TD(TD_GRAV), KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,TD(TD_RPRN),KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_PIPE, KC_BSLS, KC_PLUS, KC_EQL , XXXXXXX,                       KC_EQL, KC_LBRC,TD(TD_RBRC),KC_LCBR, KC_RCBR, KC_TILD,
+      KC_LCTL, KC_PIPE, KC_BSLS, KC_PLUS, KC_EQL , XXXXXXX,                       KC_EQL, KC_LBRC,TD(TD_RBRC),KC_LCBR,TD(TD_RCBR), KC_TILD,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, RGB_VAI, RGB_SAI, RGB_HUI, RGB_TOG,RGB_RMOD,                      KC_PLUS, KC_MINS, KC_UNDS, KC_PIPE, KC_BSLS, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -274,26 +307,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case BRC_INST:
         if (record->event.pressed) {
             brace_insert_macro();
-//            SEND_STRING("[]");
-//            tap_code(KC_LEFT);
         }
         return false;
     case CBR_INST:
         if (record->event.pressed) {
-            SEND_STRING("{}");
-            tap_code(KC_LEFT);
+            curly_brace_insert_macro();
         }
         return false;
     case PRN_INST:
         if (record->event.pressed) {
-            SEND_STRING("()");
-            tap_code(KC_LEFT);
+            parens_insert_macro();
         }
         return false;
     case GRV_INST:
         if (record->event.pressed) {
-            SEND_STRING("``");
-            tap_code(KC_LEFT);
+            grave_pair_cursor_insertion();
         }
         return false;
     case QUO_INST:
@@ -312,8 +340,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   return true;
 }
-
 //#endif // OLED_ENABLE
+
 #ifdef COMBO_ENABLE
 // Combo declarations
 enum combos {
@@ -340,20 +368,16 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         case CB_BRC_INST:
             if (pressed) {
                 brace_insert_macro()
-//                SEND_STRING("[]");
-//                tap_code(KC_LEFT);
             }
             break;
         case CB_CBR_INST:
             if (pressed) {
-                SEND_STRING("{}");
-                tap_code(KC_LEFT);
+                curly_brace_insert_macro();
             }
             break;
         case CB_PRN_INST:
             if (pressed) {
-                SEND_STRING("()");
-                tap_code(KC_LEFT);
+                parens_insert_macro();
             }
             break;
     }
