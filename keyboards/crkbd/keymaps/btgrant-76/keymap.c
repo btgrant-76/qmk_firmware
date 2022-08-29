@@ -24,36 +24,34 @@ enum custom_keycodes {
     SCRN2CLP = SAFE_RANGE, // macOS take screenshot to the clip board
     SCRN2FL,   // macOS take screenshot to a file
     Z_MUTE,    // toggle Zoom mute
-    BRC_INST,  // type a pair of braces & move the cursor between them // TODO ] x2 or [] combo
-    CBR_INST,  // type a pair of curly braces & move the cursor between them // TODO } x2 or {} combo
-    CODE_INST, // type a Markdown code fence & move the cursor inside // TODO ???
-    GRV_INST,  // type a pair of backticks & move the cursor between them // TODO ` x2
-    PRN_INST,  // type a pair of parens move the cursor between them // TODO ) x2 or () combo
+    BRC_INST,  // type a pair of braces & move the cursor between them
+    CBR_INST,  // type a pair of curly braces & move the cursor between them
+    CODE_INST, // type a Markdown code fence & move the cursor inside
+    GRV_INST,  // type a pair of backticks & move the cursor between them
+    PRN_INST,  // type a pair of parens move the cursor between them
     QUO_INST,  // type a pair of double quotes & move the cursor between them // TODO " x2
-    UP_DIR,    // type ../
-    VIM_COPY   //
+    UP_DIR,    // type ../  // TODO double-tap .?
+    VIM_COPY   //  // TODO double-tap w? No. Maybe Function layer & double-tap S?
 };
 
-
 void brace_insert_macro(void) {
-    SEND_STRING("[]");
-    tap_code(KC_LEFT);
+    SEND_STRING("[]" SS_TAP(X_LEFT));
 };
 
 void curly_brace_insert_macro(void) {
-    SEND_STRING("{}");
-    tap_code(KC_LEFT);
+    SEND_STRING("{}" SS_TAP(X_LEFT));
 };
 
-
 void parens_insert_macro(void) {
-    SEND_STRING("()");
-    tap_code(KC_LEFT);
+    SEND_STRING("()" SS_TAP(X_LEFT));
 };
 
 void grave_pair_cursor_insertion(void) {
-    SEND_STRING("``");
-    tap_code(KC_LEFT);
+    SEND_STRING("``" SS_TAP(X_LEFT));
+}
+
+void code_fence_macro(void) {
+    SEND_STRING("```" SS_TAP(X_ENT) SS_TAP(X_ENT) "```" SS_TAP(X_UP));
 }
 
 void braces_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
@@ -66,9 +64,7 @@ void braces_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
 
 void curly_brace_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
-        register_code(KC_LSHIFT);
-        tap_code(KC_RBRC);
-        unregister_code(KC_LSHIFT);
+        SEND_STRING("}");
     } else {
         curly_brace_insert_macro();
     }
@@ -85,10 +81,70 @@ void parens_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
 void grave_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 2) {
         grave_pair_cursor_insertion();
+    } else if (state->count == 4){
+        code_fence_macro();
     } else {
         SEND_STRING("`");
     }
 };
+
+void f1_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        tap_code(KC_F1);
+    } else if (state->count == 2) {
+        register_code(KC_LGUI);
+        tap_code(KC_1);
+        unregister_code(KC_LGUI);
+    } else if (state->count == 3) {
+        register_code(KC_LALT);
+        tap_code(KC_F1);
+        unregister_code(KC_LALT);
+    }
+}
+
+void f2_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        tap_code(KC_F2);
+    } else if (state->count == 2) {
+        register_code(KC_LGUI);
+        tap_code(KC_2);
+        unregister_code(KC_LGUI);
+    }
+}
+
+void f6_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        tap_code(KC_F6);
+    } else if (state->count == 2) {
+        register_code(KC_LCTL);
+        tap_code(KC_T);
+        unregister_code(KC_LCTL);
+    }
+}
+
+void f9_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        tap_code(KC_F9);
+    } else if (state->count == 2) {
+        register_code(KC_LGUI);
+        tap_code(KC_9);
+        unregister_code(KC_LGUI);
+    }
+}
+
+void f12_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        tap_code(KC_F12);
+    } else if (state->count == 2) {
+        register_code(KC_LALT);
+        tap_code(KC_F12);
+        unregister_code(KC_LALT);
+    } else if (state->count == 3) {
+        register_code(KC_LGUI);
+        tap_code(KC_F12);
+        unregister_code(KC_LGUI);
+    }
+}
 
 // Tap Dance declarations
 enum {
@@ -97,6 +153,11 @@ enum {
     TD_RCBR,
     TD_RPRN,
     TD_GRAV,
+    TD_F1,
+    TD_F2,
+    TD_F6,
+    TD_F9,
+    TD_F12,
 };
 
 // Tap Dance definitions
@@ -107,6 +168,11 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_RCBR] = ACTION_TAP_DANCE_FN(curly_brace_tap_dance),
     [TD_RPRN] = ACTION_TAP_DANCE_FN(parens_tap_dance),
     [TD_GRAV] = ACTION_TAP_DANCE_FN(grave_tap_dance),
+    [TD_F1] = ACTION_TAP_DANCE_FN(f1_tap_dance),
+    [TD_F2] = ACTION_TAP_DANCE_FN(f2_tap_dance),
+    [TD_F6] = ACTION_TAP_DANCE_FN(f6_tap_dance),
+    [TD_F9] = ACTION_TAP_DANCE_FN(f9_tap_dance),
+    [TD_F12] = ACTION_TAP_DANCE_FN(f12_tap_dance),
 };
 
 
@@ -138,7 +204,7 @@ LT(1,KC_ESC),LCTL_T(KC_A),LALT_T(KC_S),LGUI_T(KC_D),LSFT_T(KC_F),LT(1,KC_G),   L
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, KC_VOLD, XXXXXXX, KC_MPRV, KC_MNXT, KC_BRID,                      KC_PAST,    KC_1,    KC_2,    KC_3, KC_PPLS, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, KC_MPLY, _______,/*M8*/KC_ENT/*M10*/,KC_0, KC_DOT  // TODO Macro 8 & 10
+                                          KC_LGUI, KC_MPLY, _______,    _______,    KC_0,  KC_DOT
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -150,17 +216,17 @@ LT(1,KC_ESC),LCTL_T(KC_A),LALT_T(KC_S),LGUI_T(KC_D),LSFT_T(KC_F),LT(1,KC_G),   L
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, RGB_VAI, RGB_SAI, RGB_HUI, RGB_TOG,RGB_RMOD,                      KC_PLUS, KC_MINS, KC_UNDS, KC_PIPE, KC_BSLS, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX, XXXXXXX, _______,    XXXXXXX, XXXXXXX, XXXXXXX
+                                          XXXXXXX, XXXXXXX, _______,    _______, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   ),
 
   [3] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                        KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,  // TODO introduce Tap Dance
+    TD(TD_F1),TD(TD_F2),  KC_F3,   KC_F4,   KC_F5,TD(TD_F6),                       KC_F7,   KC_F8,TD(TD_F9), KC_F10,  KC_F11,TD(TD_F12),  // TODO introduce Tap Dance
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, KC_PGUP,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX,BRC_INST, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, SCRN2FL,SCRN2CLP,  UP_DIR, KC_PGDN, // TODO Macros
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, SCRN2FL,SCRN2CLP,  UP_DIR, KC_PGDN, // TODO Macros
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           XXXXXXX, XXXXXXX, _______,     Z_MUTE, XXXXXXX, XXXXXXX // TODO Macros
                                       //`--------------------------'  `--------------------------'
@@ -335,7 +401,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING("../");
         }
         return false;
-//    CODE_INST,
   }
 
   return true;
