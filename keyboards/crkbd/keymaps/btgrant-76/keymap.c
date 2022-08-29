@@ -34,15 +34,83 @@ enum custom_keycodes {
     VIM_COPY   //  // TODO double-tap w? No. Maybe Function layer & double-tap S?
 };
 
-void brace_insert_macro(void) {
+// Tap Dance declarations
+enum {
+    TD_ESC_CAPS,
+    TD_RBRC,
+    TD_RCBR,
+    TD_RPRN,
+    TD_GRAV,
+    TD_F1,
+    TD_F2,
+    TD_F6,
+    TD_F9,
+    TD_F12,
+};
+
+// TODO try mod tap aliases, or this instead:  https://docs.qmk.fm/#/faq_keymap?id=how-can-i-make-custom-names-for-complex-keycodes
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  [0] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+LT(1,KC_ESC),LCTL_T(KC_A),LALT_T(KC_S),LGUI_T(KC_D),LSFT_T(KC_F),LT(1,KC_G),   LT(2,KC_H),RSFT_T(KC_J),RGUI_T(KC_K),RALT_T(KC_L),RCTL_T(KC_SCLN),ALL_T(KC_QUOT),
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ENT,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                    LCMD(KC_LBRC),   MO(2), KC_LSFT,MEH_T(KC_SPC), MO(3),LCMD(KC_RBRC)
+                                      //`--------------------------'  `--------------------------'
+
+  ),
+
+  [1] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, KC_VOLU, KC_MUTE, XXXXXXX,LSFT(KC_SCLN),KC_BRIU,                  KC_SLSH,    KC_4,    KC_5,    KC_6, KC_PMNS, KC_PENT,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______, KC_VOLD, XXXXXXX, KC_MPRV, KC_MNXT, KC_BRID,                      KC_PAST,    KC_1,    KC_2,    KC_3, KC_PPLS, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          KC_LGUI, KC_MPLY, _______,    _______,    KC_0,  KC_DOT
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [2] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+  TD(TD_GRAV), KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,TD(TD_RPRN),KC_DEL,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LCTL, KC_PIPE, KC_BSLS, KC_PLUS, KC_EQL , XXXXXXX,                       KC_EQL, KC_LBRC,TD(TD_RBRC),KC_LCBR,TD(TD_RCBR), KC_TILD,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______, RGB_VAI, RGB_SAI, RGB_HUI, RGB_TOG,RGB_RMOD,                      KC_PLUS, KC_MINS, KC_UNDS, KC_PIPE, KC_BSLS, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, XXXXXXX, _______,    _______, XXXXXXX, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [3] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+    TD(TD_F1),TD(TD_F2),  KC_F3,   KC_F4,   KC_F5,TD(TD_F6),                       KC_F7,   KC_F8,TD(TD_F9), KC_F10,  KC_F11,TD(TD_F12),
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, KC_PGUP,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, SCRN2FL,SCRN2CLP,  UP_DIR, KC_PGDN,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, XXXXXXX, _______,     Z_MUTE, XXXXXXX, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  )
+};
+
+// Tap Dance & macro functions
+void braces_insert(void) {
     SEND_STRING("[]" SS_TAP(X_LEFT));
 };
 
-void curly_brace_insert_macro(void) {
+void curly_braces_insert(void) {
     SEND_STRING("{}" SS_TAP(X_LEFT));
 };
 
-void parens_insert_macro(void) {
+void parens_insert(void) {
     SEND_STRING("()" SS_TAP(X_LEFT));
 };
 
@@ -50,7 +118,7 @@ void grave_pair_cursor_insertion(void) {
     SEND_STRING("``" SS_TAP(X_LEFT));
 }
 
-void code_fence_macro(void) {
+void code_fence(void) {
     SEND_STRING("```" SS_TAP(X_ENT) SS_TAP(X_ENT) "```" SS_TAP(X_UP));
 }
 
@@ -58,7 +126,7 @@ void braces_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         tap_code(KC_RBRC);
     } else {
-        brace_insert_macro();
+        braces_insert();
     }
 };
 
@@ -66,7 +134,7 @@ void curly_brace_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         SEND_STRING("}");
     } else {
-        curly_brace_insert_macro();
+        curly_braces_insert();
     }
 };
 
@@ -74,7 +142,7 @@ void parens_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         SEND_STRING(")");
     } else {
-        parens_insert_macro();
+        parens_insert();
     }
 };
 
@@ -82,7 +150,7 @@ void grave_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 2) {
         grave_pair_cursor_insertion();
     } else if (state->count == 4){
-        code_fence_macro();
+        code_fence();
     } else {
         SEND_STRING("`");
     }
@@ -146,21 +214,7 @@ void f12_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-// Tap Dance declarations
-enum {
-    TD_ESC_CAPS,
-    TD_RBRC,
-    TD_RCBR,
-    TD_RPRN,
-    TD_GRAV,
-    TD_F1,
-    TD_F2,
-    TD_F6,
-    TD_F9,
-    TD_F12,
-};
-
-// Tap Dance definitions
+// Tap Dance definition
 qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Escape, twice for Caps Lock
     [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
@@ -173,64 +227,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_F6] = ACTION_TAP_DANCE_FN(f6_tap_dance),
     [TD_F9] = ACTION_TAP_DANCE_FN(f9_tap_dance),
     [TD_F12] = ACTION_TAP_DANCE_FN(f12_tap_dance),
-};
-
-
-/* Tap Dance TODOs
- * TODO add Tap Dance actions for IDEA F-row
- */
-
-// TODO try mod tap aliases, or this instead:  https://docs.qmk.fm/#/faq_keymap?id=how-can-i-make-custom-names-for-complex-keycodes
-
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [0] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-LT(1,KC_ESC),LCTL_T(KC_A),LALT_T(KC_S),LGUI_T(KC_D),LSFT_T(KC_F),LT(1,KC_G),   LT(2,KC_H),RSFT_T(KC_J),RGUI_T(KC_K),RALT_T(KC_L),RCTL_T(KC_SCLN),ALL_T(KC_QUOT),
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ENT,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                    LCMD(KC_LBRC),   MO(2), KC_LSFT,MEH_T(KC_SPC), MO(3),LCMD(KC_RBRC)
-                                      //`--------------------------'  `--------------------------'
-
-  ),
-
-  [1] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, KC_VOLU, KC_MUTE, XXXXXXX,LSFT(KC_SCLN),KC_BRIU,                  KC_SLSH,    KC_4,    KC_5,    KC_6, KC_PMNS, KC_PENT,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_VOLD, XXXXXXX, KC_MPRV, KC_MNXT, KC_BRID,                      KC_PAST,    KC_1,    KC_2,    KC_3, KC_PPLS, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, KC_MPLY, _______,    _______,    KC_0,  KC_DOT
-                                      //`--------------------------'  `--------------------------'
-  ),
-
-  [2] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-  TD(TD_GRAV), KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,TD(TD_RPRN),KC_DEL,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_PIPE, KC_BSLS, KC_PLUS, KC_EQL , XXXXXXX,                       KC_EQL, KC_LBRC,TD(TD_RBRC),KC_LCBR,TD(TD_RCBR), KC_TILD,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, RGB_VAI, RGB_SAI, RGB_HUI, RGB_TOG,RGB_RMOD,                      KC_PLUS, KC_MINS, KC_UNDS, KC_PIPE, KC_BSLS, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX, XXXXXXX, _______,    _______, XXXXXXX, XXXXXXX
-                                      //`--------------------------'  `--------------------------'
-  ),
-
-  [3] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-    TD(TD_F1),TD(TD_F2),  KC_F3,   KC_F4,   KC_F5,TD(TD_F6),                       KC_F7,   KC_F8,TD(TD_F9), KC_F10,  KC_F11,TD(TD_F12),  // TODO introduce Tap Dance
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, KC_PGUP,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, SCRN2FL,SCRN2CLP,  UP_DIR, KC_PGDN, // TODO Macros
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX, XXXXXXX, _______,     Z_MUTE, XXXXXXX, XXXXXXX // TODO Macros
-                                      //`--------------------------'  `--------------------------'
-  )
 };
 
 #ifdef OLED_ENABLE
@@ -372,17 +368,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     case BRC_INST:
         if (record->event.pressed) {
-            brace_insert_macro();
+            braces_insert();
         }
         return false;
     case CBR_INST:
         if (record->event.pressed) {
-            curly_brace_insert_macro();
+            curly_braces_insert();
         }
         return false;
     case PRN_INST:
         if (record->event.pressed) {
-            parens_insert_macro();
+            parens_insert();
         }
         return false;
     case GRV_INST:
@@ -432,17 +428,17 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     switch(combo_index) {
         case CB_BRC_INST:
             if (pressed) {
-                brace_insert_macro()
+                braces_insert()
             }
             break;
         case CB_CBR_INST:
             if (pressed) {
-                curly_brace_insert_macro();
+                curly_braces_insert();
             }
             break;
         case CB_PRN_INST:
             if (pressed) {
-                parens_insert_macro();
+                parens_insert();
             }
             break;
     }
