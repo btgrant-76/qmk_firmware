@@ -33,6 +33,11 @@ enum layer_number {
 #define RS_HENK LT(2,KC_HENK)  // raise
 #define DEL_ALT ALT_T(KC_DEL)
 
+// Tap Dance declarations
+enum {
+    TD_ESC_CAPS
+};
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT(
@@ -196,3 +201,8 @@ bool oled_task_user(void) {
 }
 #endif
 
+// Tap Dance definition
+qk_tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Escape, twice for Caps Lock
+    [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS)
+};
