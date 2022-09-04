@@ -29,9 +29,8 @@ enum custom_keycodes {
     CODE_INST, // type a Markdown code fence & move the cursor inside
     GRV_INST,  // type a pair of backticks & move the cursor between them
     PRN_INST,  // type a pair of parens move the cursor between them
-    QUO_INST,  // type a pair of double quotes & move the cursor between them // TODO " x2
-    UP_DIR,    // type ../  // TODO double-tap .?
-    VIM_COPY   //  // TODO double-tap w? No. Maybe Function layer & double-tap S?
+    QUO_INST,
+    UP_DIR
 };
 
 // Tap Dance declarations
@@ -47,8 +46,6 @@ enum {
     TD_F9,
     TD_F12,
 };
-
-// TODO try mod tap aliases, or this instead:  https://docs.qmk.fm/#/faq_keymap?id=how-can-i-make-custom-names-for-complex-keycodes
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_split_3x6_3(
@@ -175,7 +172,7 @@ void f2_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
         tap_code(KC_F2);
     } else if (state->count == 2) {
         register_code(KC_LGUI);
-        tap_code(KC_2);
+        tap_code(KC_F2);
         unregister_code(KC_LGUI);
     }
 }
