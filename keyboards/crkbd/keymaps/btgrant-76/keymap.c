@@ -20,11 +20,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 #include <stdio.h>
 
-enum layers {
+enum layers { // TODO use names that are more appropriate
   _QWERTY,
   _LOWER,
   _RAISE,
-  _ADJUST
+  _ADJUST,  // nav?
+  _FUNC // TODO
 };
 
 enum custom_keycodes {
@@ -42,6 +43,7 @@ enum custom_keycodes {
     LOWER,
     RAISE,
     ADJUST,
+    FUNC
 };
 
 // Tap Dance declarations
@@ -83,7 +85,9 @@ enum {
 
 #define ENT_SFT RSFT_T(KC_ENT)
 #define SPC_MEH MEH_T(KC_SPC)
+#define QUOT_MEH MEH_T(KC_QUOT)
 #define QUOT_ALL ALL_T(KC_QUOT)
+#define SCLN_ALL ALL_T(KC_SCLN)
 
 
 // Shifted Keys
@@ -105,20 +109,20 @@ enum {
 #define F12_TD TD(TD_F12)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [0] = LAYOUT_split_3x6_3(
+  [0] = LAYOUT_split_3x6_3(  // QUERTY
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN,QUOT_ALL,
+       KC_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L,SCLN_ALL,QUOT_MEH,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,   Z_CTL,   X_ALT,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM, DOT_ALT,SLSH_CTL, ENT_SFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI,   RAISE,   LOWER,    SPC_MEH,  ADJUST, KC_RGUI
+                                          KC_LGUI,   RAISE,   LOWER,     KC_SPC,  ADJUST, KC_RGUI
                                       //`--------------------------'  `--------------------------'
 
   ),
 
-  [1] = LAYOUT_split_3x6_3(
+  [1] = LAYOUT_split_3x6_3(  // RAISE
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       XXXXXXX, RGB_VAI, RGB_SAI, RGB_HUI, RGB_TOG,RGB_RMOD,                      KC_LBRC,    KC_7,    KC_8,    KC_9, RBRC_TD, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -130,29 +134,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   ),
 
-  [2] = LAYOUT_split_3x6_3(
+  [2] = LAYOUT_split_3x6_3(  // LOWER  // TODO move function keys to their own layer
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      GRAV_TD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, RCBR_TD,  KC_DEL,
+      GRAV_TD,   KC_F7,   KC_F8,   F9_TD,  F12_TD, XXXXXXX,                      KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, RCBR_TD,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PLUS,  KC_DLR, KC_PERC, KC_CIRC, KC_COLN, KC_TILD,
+      XXXXXXX,   KC_F4,   KC_F5,   F6_TD,  KC_F11, XXXXXXX,                      KC_PLUS,  KC_DLR, KC_PERC, KC_CIRC, KC_COLN, KC_TILD,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PIPE, KC_EXLM,   KC_AT, KC_HASH, KC_TILD, XXXXXXX,
+      _______,   F1_TD,   F2_TD,   KC_F3,  KC_F10, XXXXXXX,                      KC_PIPE, KC_EXLM,   KC_AT, KC_HASH, KC_TILD, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           XXXXXXX, XXXXXXX, _______,    KC_UNDS, KC_LPRN, RPRN_TD
                                       //`--------------------------'  `--------------------------'
   ),
 
-  [3] = LAYOUT_split_3x6_3(
+  [3] = LAYOUT_split_3x6_3( // NAV
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        F1_TD,   F2_TD,   KC_F3,   KC_F4,   KC_F5,   F6_TD,                        KC_F7,   KC_F8,   F9_TD,  KC_F10,  KC_F11,  F12_TD,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    LSG(KC_Z),LGUI(KC_V),LGUI(KC_C),LGUI(KC_X),LGUI(KC_Z),XXXXXXX,  // TODO use define
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, KC_PGUP,
+      KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, KC_CAPS, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_LCTL, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, SCRN2FL,SCRN2CLP,  UP_DIR, KC_PGDN,
+      _______, KC_LCTL, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END,  UP_DIR, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI, XXXXXXX, _______,     Z_MUTE, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
-  )
+  ),
+
+  [4] = LAYOUT_split_3x6_3(  // FUN
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX,   KC_F7,   KC_F8,   F9_TD,  F12_TD, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX,   KC_F4,   KC_F5,   F6_TD,  KC_F11, XXXXXXX,                      XXXXXXX, KC_RSFT, KC_RGUI, KC_RALT, KC_RCTL, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______,   F1_TD,   F2_TD,   KC_F3,  KC_F10, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          XXXXXXX, KC_SPC,   KC_TAB,    XXXXXXX, XXXXXXX, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
 };
 
 // Tap Dance & macro functions
