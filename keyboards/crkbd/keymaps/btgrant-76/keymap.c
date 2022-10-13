@@ -25,7 +25,7 @@ enum layers { // TODO use names that are more appropriate
   _LOWER,
   _RAISE,
   _ADJUST,  // nav?
-  _FUNC // TODO
+  _FUNC
 };
 
 enum custom_keycodes {
@@ -89,6 +89,12 @@ enum {
 #define QUOT_ALL ALL_T(KC_QUOT)
 #define SCLN_ALL ALL_T(KC_SCLN)
 
+#define CUT LGUI(KC_X)
+#define COPY LGUI(KC_C)
+#define PASTE LGUI(KC_V)
+#define UNDO LGUI(KC_Z)
+#define REDO LSG(KC_Z)
+
 
 // Shifted Keys
 #define COLON LSFT(KC_SCLN)
@@ -117,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,   Z_CTL,   X_ALT,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM, DOT_ALT,SLSH_CTL, ENT_SFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI,   RAISE,   LOWER,     KC_SPC,  ADJUST, KC_RGUI
+                                          KC_LGUI,   RAISE,   LOWER,     KC_SPC,  ADJUST,    FUNC
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -134,13 +140,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   ),
 
-  [2] = LAYOUT_split_3x6_3(  // LOWER  // TODO move function keys to their own layer
+  [2] = LAYOUT_split_3x6_3(  // LOWER
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      GRAV_TD,   KC_F7,   KC_F8,   F9_TD,  F12_TD, XXXXXXX,                      KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, RCBR_TD,  KC_DEL,
+      GRAV_TD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, RCBR_TD,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX,   KC_F4,   KC_F5,   F6_TD,  KC_F11, XXXXXXX,                      KC_PLUS,  KC_DLR, KC_PERC, KC_CIRC, KC_COLN, KC_TILD,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PLUS,  KC_DLR, KC_PERC, KC_CIRC, KC_COLN, KC_TILD,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,   F1_TD,   F2_TD,   KC_F3,  KC_F10, XXXXXXX,                      KC_PIPE, KC_EXLM,   KC_AT, KC_HASH, KC_TILD, XXXXXXX,
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PIPE, KC_EXLM,   KC_AT, KC_HASH, KC_TILD, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           XXXXXXX, XXXXXXX, _______,    KC_UNDS, KC_LPRN, RPRN_TD
                                       //`--------------------------'  `--------------------------'
@@ -148,7 +154,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [3] = LAYOUT_split_3x6_3( // NAV
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    LSG(KC_Z),LGUI(KC_V),LGUI(KC_C),LGUI(KC_X),LGUI(KC_Z),XXXXXXX,  // TODO use define
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                         REDO,   PASTE,    COPY,     CUT,    UNDO, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, KC_CAPS, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -160,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [4] = LAYOUT_split_3x6_3(  // FUN
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX,   KC_F7,   KC_F8,   F9_TD,  F12_TD, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX,   KC_F7,   KC_F8,   F9_TD,  F12_TD, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  // TODO move macros in here
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX,   KC_F4,   KC_F5,   F6_TD,  KC_F11, XXXXXXX,                      XXXXXXX, KC_RSFT, KC_RGUI, KC_RALT, KC_RCTL, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -470,6 +476,8 @@ void render_layer_state(void) {
         oled_write_P(lower_layer, false);
     } else if(layer_state_is(_RAISE)) {
         oled_write_P(raise_layer, false);
+    } else if(layer_state_is(_FUNC)) {
+        oled_write_P(adjust_layer,false);
     } else {
         oled_write_P(default_layer, false);
     }
@@ -685,6 +693,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_on(_ADJUST);
         } else {
           layer_off(_ADJUST);
+        }
+        return false;
+    case FUNC:
+        if (record->event.pressed) {
+            layer_on(_FUNC);
+        } else {
+          layer_off(_FUNC);
         }
         return false;
 //    case KC_RACL:
