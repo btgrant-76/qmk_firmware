@@ -8,6 +8,8 @@
 
 #### `miryoku_num_and_sym` from 0.18.4
 - Miryoku-like num & sym layouts on the right
+- Enabling VIA
+- 27118/28672 (94%, 1554 bytes free)
 
 #### `crkbd-tweaks` from 0.18.4
 - changed `TAPPING_TERM` from 180 to 150

@@ -95,7 +95,6 @@ enum {
 #define UNDO LGUI(KC_Z)
 #define REDO LSG(KC_Z)
 
-
 // Shifted Keys
 #define COLON LSFT(KC_SCLN)
 
@@ -164,7 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   ),
 
-  [4] = LAYOUT_split_3x6_3(  // FUN
+  [4] = LAYOUT_split_3x6_3( // FUN
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       XXXXXXX,   KC_F7,   KC_F8,   F9_TD,  F12_TD, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  // TODO move macros in here
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
