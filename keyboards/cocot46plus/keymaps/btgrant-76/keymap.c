@@ -196,6 +196,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         rgblight_sethsv_range(HSV_GREEN, 0, 2);
         cocot_set_scroll_mode(false);
         break;
+    case _FUNCTION:
+        rgblight_sethsv_range(HSV_ORANGE, 0, 2);
+        cocot_set_scroll_mode(false);
+        break;
     default:
         // rgblight_sethsv_range( 0, 0, 0, 0, 2);
         rgblight_sethsv_range(hue_fst, sat_fst, val_fst, 0, 2);
