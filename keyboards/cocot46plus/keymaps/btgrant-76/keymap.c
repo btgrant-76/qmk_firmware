@@ -148,6 +148,13 @@ void matrix_scan_user(void) {
 }
 
 
+#undef oled_write_layer_state
+
+void oled_write_layer_state(void) {
+
+};
+
+
 /*
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     int8_t degree = 45;
