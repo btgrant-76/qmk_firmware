@@ -189,7 +189,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         cocot_set_scroll_mode(true);
         break;
     case _RAISE:
-        rgblight_sethsv_range(HSV_RED, 0, 2);
+        rgblight_sethsv_range(HSV_PURPLE, 0, 2);
         cocot_set_scroll_mode(true);
         break;
     case _TRACKBALL:
@@ -197,7 +197,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         cocot_set_scroll_mode(false);
         break;
     case _FUNCTION:
-        rgblight_sethsv_range(HSV_ORANGE, 0, 2);
+        rgblight_sethsv_range(HSV_YELLOW, 0, 2);
         cocot_set_scroll_mode(false);
         break;
     default:
