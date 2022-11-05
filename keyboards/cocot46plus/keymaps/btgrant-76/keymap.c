@@ -82,11 +82,12 @@ enum {
 #define L_CTL RALT_T(KC_L)
 #define SCLN_CTL RCTL_T(KC_SCLN)
 
-/// Others
+// Others
 #define Z_CTL LCTL_T(KC_Z)
 #define X_ALT LALT_T(KC_X)
 #define DOT_ALT LALT_T(KC_DOT)
 #define SLSH_CTL LCTL_T(KC_SLSH)
+#define DEL_GUI LGUI_T(KC_DEL)
 
 #define ENT_SFT RSFT_T(KC_ENT)
 #define SPC_MEH MEH_T(KC_SPC)
@@ -99,6 +100,11 @@ enum {
 #define PASTE LGUI(KC_V)
 #define UNDO LGUI(KC_Z)
 #define REDO LSG(KC_Z)
+
+// macOS navigation
+#define MISS_CTL LCTL_T(KC_UP)
+#define LEFT_SPC LCTL_T(KC_LEFT)
+#define RGHT_SPC LCTL_T(KC_RIGHT)
 
 // Shifted Keys
 #define COLON LSFT(KC_SCLN)
@@ -156,15 +162,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                             //`--------------'  `--------------'
     ),
   [_TRACKBALL] = LAYOUT(
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD,                                       SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD,RGB_RMOD,                                       SCRL_IN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, DEL_ALT, KC_TRNS,  KC_SPC,   KC_MS_BTN1,             KC_MS_BTN2,  KC_ENT, RS_HENK, KC_BSPC,  KC_ESC,
-                                                                 KC_PGUP, KC_MS_BTN3,  KC_PGDOWN, XXXXXXX, XXXXXXX, XXXXXXX
+  //|-----------------------------------------------------|                                       |-----------------------------------------------------|
+     SCRN2CLP, SCRN2FL, XXXXXXX, XXXXXXX, XXXXXXX,  UP_DIR,                                            REDO,   PASTE,    COPY,     CUT,    UNDO, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,                                         KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, KC_CAPS, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
+      KC_TRNS, KC_LCTL, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX,                                         KC_HOME, KC_PGDN, KC_PGUP,  KC_END,  KC_INS, KC_TRNS,
+  //|--------+--------+--------+--------+--------+--------+--------|                     |--------+--------+--------+--------+--------+--------+--------|
+                                 KC_TRNS, DEL_GUI, KC_BSPC,  KC_ENT,   KC_BTN1, KC_BTN2,   XXXXXXX, XXXXXXX, XXXXXXX, KC_TRNS,
+                             //|-----------------------------------------+--------+------------------------------------------|
+                                                                 LEFT_SPC,MISS_CTL,  RGHT_SPC, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_FUNCTION] = LAYOUT(
@@ -173,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
       LOG_OUT,  KC_F11,   KC_F4,   KC_F5,   TD_F6, XXXXXXX,                                         SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
-      KC_TRNS,  KC_F10,   KC_F1,   TD_F2,   TD_F3, XXXXXXX,                                         SCRL_IN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      KC_TRNS,  KC_F10,   KC_F1,   TD_F2,   KC_F3, XXXXXXX,                                         SCRL_IN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|                     |--------+--------+--------+--------+--------+--------+--------|
                                  XXXXXXX, DEL_ALT,  KC_SPC,  KC_TAB,  KC_BTN1, KC_BTN2,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                              //|-----------------------------------------+--------+------------------------------------------|
