@@ -138,15 +138,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                             //`--------------'  `--------------'
     ),
   [_LOWER] = LAYOUT(
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-       KC_ESC, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                       KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, KC_COLN, KC_DQUO,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LSFT,  KC_GRV, KC_TILD, KC_NUBS, KC_PIPE, XXXXXXX,                                        KC_EQL, KC_PLUS, KC_LABK, KC_RABK, KC_QUES, KC_UNDS,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, DEL_ALT, _______,  KC_SPC,   KC_MS_BTN4,             KC_MS_BTN5,  KC_ENT,   TT(3), KC_BSPC,  KC_ESC,
-                                                                 KC_PGUP, KC_MS_BTN3,  KC_PGDOWN, XXXXXXX, XXXXXXX, XXXXXXX
+  //|-----------------------------------------------------|                                       |-----------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                         KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, RCBR_TD,  KC_DEL,
+  //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
+      KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,                                         KC_PLUS,  KC_DLR, KC_PERC, KC_CIRC, KC_COLN, KC_TILD,
+  //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
+      _______, KC_LCTL, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX,                                         KC_PIPE, KC_EXLM,   KC_AT, KC_HASH, KC_TILD, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+--------|                     |--------+--------+--------+--------+--------+--------+--------|
+                                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, BACK,     FWD,        KC_UNDS, KC_LPRN, RPRN_TD, XXXXXXX,
+                             //|-----------------------------------------+--------+------------------------------------------|
+                                                                  XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_RAISE] = LAYOUT(
@@ -172,7 +173,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------+--------|                     |--------+--------+--------+--------+--------+--------+--------|
                                  _______, DEL_GUI, KC_BSPC,  KC_ENT,   KC_BTN1, KC_BTN2,   XXXXXXX, XXXXXXX, XXXXXXX, _______,
                              //|-----------------------------------------+--------+------------------------------------------|
-                                                                 LEFT_SPC,MISS_CTL,  RGHT_SPC, XXXXXXX, XXXXXXX, XXXXXXX
+                                                                 LEFT_SPC,MISS_CTL,  RGHT_SPC,       XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_FUNCTION] = LAYOUT(
@@ -185,7 +186,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------+--------|                     |--------+--------+--------+--------+--------+--------+--------|
                                  XXXXXXX, DEL_ALT,  KC_SPC,  KC_TAB,  KC_BTN1, KC_BTN2,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                              //|-----------------------------------------+--------+------------------------------------------|
-                                                                  KC_PGUP, KC_BTN3, KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
+                                                                  KC_PGUP, KC_BTN3, KC_PGDN,         XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     )
 };
