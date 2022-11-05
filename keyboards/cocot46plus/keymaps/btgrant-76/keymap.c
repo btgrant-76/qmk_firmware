@@ -47,7 +47,8 @@ enum custom_keycodes {
     GRV_INST,  // type a pair of backticks & move the cursor between them
     PRN_INST,  // type a pair of parens move the cursor between them
     QUO_INST,
-    UP_DIR
+    UP_DIR,
+    LOG_OUT
 };
 
 // Tap Dance declarations
@@ -167,15 +168,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                             //`--------------'  `--------------'
     ),
   [_FUNCTION] = LAYOUT(
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD,                                       SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD,RGB_RMOD,                                       SCRL_IN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, DEL_ALT, KC_TRNS,  KC_SPC,   KC_MS_BTN1,             KC_MS_BTN2,  KC_ENT, RS_HENK, KC_BSPC,  KC_ESC,
-                                                                 KC_PGUP, KC_MS_BTN3,  KC_PGDOWN, XXXXXXX, XXXXXXX, XXXXXXX
+  //|-----------------------------------------------------|                                       |-----------------------------------------------------|
+      XXXXXXX,  KC_F12,   KC_F7,   KC_F8,   KC_F9, XXXXXXX,                                         SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
+      LOG_OUT,  KC_F11,   KC_F4,   KC_F5,   KC_F6, XXXXXXX,                                         SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
+      XXXXXXX,  KC_F10,   KC_F1,   KC_F2,   KC_F3, XXXXXXX,                                         SCRL_IN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+--------|                     |--------+--------+--------+--------+--------+--------+--------|
+                                 XXXXXXX, DEL_ALT,  KC_SPC,  KC_TAB,  KC_BTN1, KC_BTN2,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                             //|-----------------------------------------+--------+------------------------------------------|
+                                                                  KC_PGUP, KC_BTN3, KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     )
 };
@@ -195,6 +197,14 @@ void parens_insert(void) {
 
 void grave_pair_cursor_insertion(void) {
     SEND_STRING("``" SS_TAP(X_LEFT));
+}
+
+void macos_log_out(void) {
+    register_code(KC_LGUI);
+    register_code(KC_LCTL);
+    tap_code(KC_Q);
+    unregister_code(KC_LGUI);
+    unregister_code(KC_LCTL);
 }
 
 void code_fence(void) {
@@ -376,6 +386,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case UP_DIR:
         if (record->event.pressed) {
             SEND_STRING("../");
+        }
+        return false;
+    case LOG_OUT:
+        if (record->event.pressed) {
+            macos_log_out();
         }
         return false;
   }
