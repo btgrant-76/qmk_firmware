@@ -70,6 +70,11 @@ enum {
 #define ESC_L1 LT(1,KC_ESC)
 #define G_NUM LT(1,KC_G)
 #define H_SYM LT(2,KC_H)
+// TODO crkbd & cocot46plus layers are in different orders; unify them
+#define BS_SYM LT(1, KC_BSPC)
+#define ENT_NUM LT(2, KC_ENT)
+#define SPC_NAV LT(3, KC_SPC)
+#define ESC_FUN LT(4, KC_ESC)
 
 // Mod Tap
 /// Home Row Mods
@@ -126,15 +131,16 @@ enum {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT(
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                          KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                          KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, DEL_ALT,   LW_MHEN,  KC_SPC, KC_MS_BTN1,             KC_MS_BTN2,  KC_ENT, RS_HENK, KC_BSPC,  KC_ESC,
-                                                                 KC_PGUP, KC_MS_BTN3,  KC_PGDOWN, XXXXXXX, XXXXXXX, XXXXXXX
+  //|-----------------------------------------------------|                                       |-----------------------------------------------------|
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                            KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
+       KC_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                            KC_H,    KC_J,    KC_K,    KC_L,SCLN_ALL,QUOT_MEH,
+  //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
+      KC_LSFT,   Z_CTL,   X_ALT,    KC_C,    KC_V,    KC_B,                                            KC_N,    KC_M, KC_COMM, DOT_ALT,SLSH_CTL, ENT_SFT,
+  //|--------+--------+--------+--------+--------+--------+--------|                     |--------+--------+--------+--------+--------+--------+--------|
+                                    BACK, DEL_GUI,  BS_SYM, ENT_NUM,   KC_BTN1, KC_BTN2,     MO(2), SPC_NAV, ESC_FUN,     FWD,
+                             //|-----------------------------------------+--------+------------------------------------------|
+                                                                 KC_PGUP, KC_BTN3,  KC_PGDOWN, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_LOWER] = LAYOUT(
