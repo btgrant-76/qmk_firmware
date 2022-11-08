@@ -79,4 +79,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ADNS5050_CS_PIN           B5
 
 #define POINTING_DEVICE_ROTATION_180
-#define OLED_FONT_H "keyboards/cocot46plus/glcdfont.c"
+#define OLED_FONT_H "keyboards/aki27/cocot46plus/glcdfont.c"
