@@ -164,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
   [_TRACKBALL] = LAYOUT(
   //|-----------------------------------------------------|                                       |-----------------------------------------------------|
-     SCRN2CLP, SCRN2FL, XXXXXXX, XXXXXXX, XXXXXXX,  UP_DIR,                                            REDO,   PASTE,    COPY,     CUT,    UNDO, XXXXXXX,
+      XXXXXXX,SCRN2CLP, SCRN2FL, XXXXXXX, XXXXXXX,  UP_DIR,                                            REDO,   PASTE,    COPY,     CUT,    UNDO, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
       XXXXXXX, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,                                         KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, KC_CAPS, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
