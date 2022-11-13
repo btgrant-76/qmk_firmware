@@ -118,7 +118,6 @@ enum {
 
 // TODO format like crkbd
 // TODO replace KC_TRNS with _______
-// TODO add in audio keys from audio keymap
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
@@ -132,39 +131,39 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______,  _______, _______, _______,           _______, _______, _______, _______, _______, _______,
     XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,           KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, RCBR_TD,  KC_DEL,
     KC_CAPS, KC_LCTL, KC_LALT,  KC_LGUI, KC_LSFT, XXXXXXX,           KC_PLUS,  KC_DLR, KC_PERC, KC_CIRC, KC_COLN, KC_TILD,
-    _______, KC_LCTL, KC_LALT,  XXXXXXX, XXXXXXX, XXXXXXX, KC_TRNS,  KC_PIPE, KC_EXLM,   KC_AT, KC_HASH, KC_TILD, XXXXXXX,
+    _______, KC_LCTL, KC_LALT,  XXXXXXX, XXXXXXX, XXXXXXX, KC_MPLY,  KC_PIPE, KC_EXLM,   KC_AT, KC_HASH, KC_TILD, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_UNDS, KC_LPRN, RPRN_TD, XXXXXXX, XXXXXXX, XXXXXXX
     ),
     [_NUM] = LAYOUT(
     _______, _______, _______,  _______, _______, _______,           _______, _______, _______, _______, _______, _______,
     XXXXXXX, XXXXXXX, XXXXXXX,    BACK,     FWD, XXXXXXX,          KC_LBRC,    KC_7,    KC_8,    KC_9, RBRC_TD, KC_BSPC,
     XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, XXXXXXX,           KC_EQL,    KC_4,    KC_5,    KC_6, KC_SCLN, KC_PENT,
-    _______, RGB_TOG,RGB_RMOD, RGB_HUI, RGB_SAI, RGB_VAI, KC_TRNS, KC_BSLS,    KC_1,    KC_2,    KC_3, GRAV_TD, _______,
+    _______, RGB_TOG,RGB_RMOD, RGB_HUI, RGB_SAI, RGB_VAI, KC_HOME, KC_BSLS,    KC_1,    KC_2,    KC_3, GRAV_TD, _______,
     XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE, KC_MPLY, KC_MSTP, XXXXXXX, KC_MINS, KC_0, KC_DOT, XXXXXXX, XXXXXXX, XXXXXXX
     ),
     [_NAV] = LAYOUT(
     _______, _______, _______,  _______, _______, _______,           _______, _______, _______, _______, _______, _______,
     XXXXXXX,SCRN2CLP, SCRN2FL, XXXXXXX, XXXXXXX,  UP_DIR,             REDO,   PASTE,    COPY,     CUT,    UNDO, XXXXXXX,
     XXXXXXX, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,          KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, KC_CAPS, XXXXXXX,
-    _______, KC_LCTL, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX, KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,  KC_INS, _______,
+    _______, KC_LCTL, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,  KC_INS, _______,
     XXXXXXX, XXXXXXX, XXXXXXX, DEL_GUI, KC_BSPC, KC_ENT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
     ),
     [_FUN] = LAYOUT(
     _______, _______, _______,  _______, _______, _______,           _______, _______, _______, _______, _______, _______,
-    XXXXXXX,  F12_TD,   KC_F7,   KC_F8,   F9_TD, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX,  F12_TD,   KC_F7,   KC_F8,   F9_TD, XXXXXXX,          AU_TOG, MU_TOG, MU_MOD, XXXXXXX, XXXXXXX, XXXXXXX,
     LOG_OUT,  KC_F11,   KC_F4,   KC_F5,   F6_TD, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    _______,  KC_F10,   F1_TD,   F2_TD,   KC_F3, XXXXXXX, KC_TRNS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    _______,  KC_F10,   F1_TD,   F2_TD,   KC_F3, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_SPC,  KC_TAB, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
     )
 };
 
 #ifdef ENCODER_MAP_ENABLE
-    const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = { // TODO port from Vial?
+    const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
         [_BASE] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
-        [_SYM]  = { ENCODER_CCW_CW(KC_TRNS, KC_TRNS) },
-        [_NUM]  = { ENCODER_CCW_CW(KC_TRNS, KC_TRNS) },
-        [_NAV]  = { ENCODER_CCW_CW(KC_TRNS, KC_TRNS) },
-        [_FUN]  = { ENCODER_CCW_CW(KC_TRNS, KC_TRNS) }
+        [_SYM]  = { ENCODER_CCW_CW(KC_MPRV, KC_MNXT) },
+        [_NUM]  = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
+        [_NAV]  = { ENCODER_CCW_CW(BACK, FWD) },
+        [_FUN]  = { ENCODER_CCW_CW(KC_BRIU, KC_BRID) }
     };
 #endif
 // Tap Dance & macro functions
