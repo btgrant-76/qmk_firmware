@@ -22,3 +22,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define AUDIO_PWM_DRIVER PWMD1
 #define AUDIO_PWM_CHANNEL 1
 #define AUDIO_STATE_TIMER GPTD4
+
+#define DYNAMIC_KEYMAP_LAYER_COUNT 5
+
+#define TAPPING_TERM 150
+#undef PERMISSIVE_HOLD
+#define IGNORE_MOD_TAP_INTERRUPT
+#undef TAPPING_FORCE_HOLD
+#undef RETRO_TAPPING
+#define TAP_CODE_DELAY 10
+#define TAP_HOLD_CAPS_DELAY 80
