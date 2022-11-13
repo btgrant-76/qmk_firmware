@@ -127,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
       KC_LSFT,   Z_CTL,   X_ALT,    KC_C,    KC_V,    KC_B, KC_MUTE,    KC_N,    KC_M, KC_COMM, DOT_ALT,SLSH_CTL, ENT_SFT,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
-         BACK, KC_LCTL, KC_LALT, KC_LGUI, BS_SYM,  ENT_NUM,  Z_MUTE,MO(_NUM), SPC_NAV, ESC_FUN, XXXXXXX, XXXXXXX,     FWD  // TODO fill in the NOOPs with something
+         BACK, KC_LCTL, KC_LALT, KC_LGUI, BS_SYM,  ENT_NUM,  Z_MUTE,MO(_NUM), SPC_NAV, ESC_FUN,SCRN2CLP, SCRN2FL,     FWD
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
     ),
     [_SYM] = LAYOUT(
@@ -136,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, RCBR_TD,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
-       C_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,          KC_PLUS,  KC_DLR, KC_PERC, KC_CIRC, KC_COLN, KC_TILD,
+      KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,          KC_PLUS,  KC_DLR, KC_PERC, KC_CIRC, KC_COLN, KC_TILD,
   //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
     _______, KC_LCTL, KC_LALT,  XXXXXXX, XXXXXXX, XXXXXXX,  KC_MPLY, KC_PIPE, KC_EXLM,   KC_AT, KC_HASH, KC_TILD, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
