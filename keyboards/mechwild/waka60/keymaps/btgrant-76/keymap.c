@@ -116,44 +116,71 @@ enum {
 #define F9_TD TD(TD_F9)
 #define F12_TD TD(TD_F12)
 
-// TODO format like crkbd
-// TODO replace KC_TRNS with _______
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
-    F1_TD,   F2_TD,   KC_F3,   KC_F4,   KC_F5,   F6_TD,            KC_F7,   KC_F8,   F9_TD,   KC_F10,  KC_F11,  F12_TD,
-    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-    KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,             KC_H,    KC_J,    KC_K,    KC_L,    SCLN_ALL,QUOT_MEH,
-    KC_LSFT, Z_CTL,   X_ALT,   KC_C,    KC_V,    KC_B,   KC_MUTE,  KC_N,    KC_M,    KC_COMM, DOT_ALT, SLSH_CTL,ENT_SFT,
-    BACK,    KC_LCTL, KC_LALT, KC_LGUI, BS_SYM,  ENT_NUM, Z_MUTE,  MO(_NUM),SPC_NAV, ESC_FUN, XXXXXXX, XXXXXXX, FWD  // TODO fill in the NOOPs with something
+  //|-----------------------------------------------------|        |-----------------------------------------------------|
+        F1_TD,   F2_TD,   KC_F3,   KC_F4,   KC_F5,   F6_TD,            KC_F7,   KC_F8,   F9_TD,  KC_F10,  KC_F11,  F12_TD,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+       KC_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,             KC_H,    KC_J,    KC_K,    KC_L,SCLN_ALL,QUOT_MEH,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+      KC_LSFT,   Z_CTL,   X_ALT,    KC_C,    KC_V,    KC_B, KC_MUTE,    KC_N,    KC_M, KC_COMM, DOT_ALT,SLSH_CTL, ENT_SFT,
+  //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+         BACK, KC_LCTL, KC_LALT, KC_LGUI, BS_SYM,  ENT_NUM,  Z_MUTE,MO(_NUM), SPC_NAV, ESC_FUN, XXXXXXX, XXXXXXX,     FWD  // TODO fill in the NOOPs with something
+  //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
     ),
     [_SYM] = LAYOUT(
-    _______, _______, _______,  _______, _______, _______,           _______, _______, _______, _______, _______, _______,
-    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,           KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, RCBR_TD,  KC_DEL,
-    KC_CAPS, KC_LCTL, KC_LALT,  KC_LGUI, KC_LSFT, XXXXXXX,           KC_PLUS,  KC_DLR, KC_PERC, KC_CIRC, KC_COLN, KC_TILD,
-    _______, KC_LCTL, KC_LALT,  XXXXXXX, XXXXXXX, XXXXXXX, KC_MPLY,  KC_PIPE, KC_EXLM,   KC_AT, KC_HASH, KC_TILD, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_UNDS, KC_LPRN, RPRN_TD, XXXXXXX, XXXXXXX, XXXXXXX
+  //|-----------------------------------------------------|        |-----------------------------------------------------|
+      _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, RCBR_TD,  KC_DEL,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+       C_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,          KC_PLUS,  KC_DLR, KC_PERC, KC_CIRC, KC_COLN, KC_TILD,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+    _______, KC_LCTL, KC_LALT,  XXXXXXX, XXXXXXX, XXXXXXX,  KC_MPLY, KC_PIPE, KC_EXLM,   KC_AT, KC_HASH, KC_TILD, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_UNDS, KC_LPRN, RPRN_TD, XXXXXXX, XXXXXXX, XXXXXXX
+  //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
     ),
     [_NUM] = LAYOUT(
-    _______, _______, _______,  _______, _______, _______,           _______, _______, _______, _______, _______, _______,
-    XXXXXXX, XXXXXXX, XXXXXXX,    BACK,     FWD, XXXXXXX,          KC_LBRC,    KC_7,    KC_8,    KC_9, RBRC_TD, KC_BSPC,
-    XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, XXXXXXX,           KC_EQL,    KC_4,    KC_5,    KC_6, KC_SCLN, KC_PENT,
-    _______, RGB_TOG,RGB_RMOD, RGB_HUI, RGB_SAI, RGB_VAI, KC_HOME, KC_BSLS,    KC_1,    KC_2,    KC_3, GRAV_TD, _______,
-    XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE, KC_MPLY, KC_MSTP, XXXXXXX, KC_MINS, KC_0, KC_DOT, XXXXXXX, XXXXXXX, XXXXXXX
+  //|-----------------------------------------------------|        |-----------------------------------------------------|
+      _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX,    BACK,     FWD, XXXXXXX,          KC_LBRC,    KC_7,    KC_8,    KC_9, RBRC_TD, KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, XXXXXXX,           KC_EQL,    KC_4,    KC_5,    KC_6, KC_SCLN, KC_PENT,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+      _______, RGB_TOG,RGB_RMOD, RGB_HUI, RGB_SAI, RGB_VAI, KC_HOME, KC_BSLS,    KC_1,    KC_2,    KC_3, GRAV_TD, _______,
+  //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE, KC_MPLY, KC_MSTP, XXXXXXX, KC_MINS,    KC_0,  KC_DOT, XXXXXXX, XXXXXXX,  XXXXXXX
+  //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
     ),
     [_NAV] = LAYOUT(
-    _______, _______, _______,  _______, _______, _______,           _______, _______, _______, _______, _______, _______,
-    XXXXXXX,SCRN2CLP, SCRN2FL, XXXXXXX, XXXXXXX,  UP_DIR,             REDO,   PASTE,    COPY,     CUT,    UNDO, XXXXXXX,
-    XXXXXXX, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,          KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, KC_CAPS, XXXXXXX,
-    _______, KC_LCTL, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,  KC_INS, _______,
-    XXXXXXX, XXXXXXX, XXXXXXX, DEL_GUI, KC_BSPC, KC_ENT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+  //|-----------------------------------------------------|        |-----------------------------------------------------|
+      _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+      XXXXXXX,SCRN2CLP, SCRN2FL, XXXXXXX, XXXXXXX,  UP_DIR,             REDO,   PASTE,    COPY,     CUT,    UNDO, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX,          KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, KC_CAPS, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+      _______, KC_LCTL, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,  KC_INS, _______,
+  //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, DEL_GUI, KC_BSPC,  KC_ENT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+  //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
     ),
     [_FUN] = LAYOUT(
-    _______, _______, _______,  _______, _______, _______,           _______, _______, _______, _______, _______, _______,
-    XXXXXXX,  F12_TD,   KC_F7,   KC_F8,   F9_TD, XXXXXXX,          AU_TOG, MU_TOG, MU_MOD, XXXXXXX, XXXXXXX, XXXXXXX,
-    LOG_OUT,  KC_F11,   KC_F4,   KC_F5,   F6_TD, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    _______,  KC_F10,   F1_TD,   F2_TD,   KC_F3, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_SPC,  KC_TAB, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+  //|-----------------------------------------------------|        |-----------------------------------------------------|
+      _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+      XXXXXXX,  F12_TD,   KC_F7,   KC_F8,   F9_TD, XXXXXXX,           AU_TOG,  MU_TOG,  MU_MOD, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+      LOG_OUT,  KC_F11,   KC_F4,   KC_F5,   F6_TD, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
+      _______,  KC_F10,   F1_TD,   F2_TD,   KC_F3, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_SPC,  KC_TAB, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+  //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
     )
 };
 
