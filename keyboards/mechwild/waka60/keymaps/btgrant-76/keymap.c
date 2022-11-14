@@ -140,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
     _______, KC_LCTL, KC_LALT,  XXXXXXX, XXXXXXX, XXXXXXX,  KC_MPLY, KC_PIPE, KC_EXLM,   KC_AT, KC_HASH, KC_TILD, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_UNDS, KC_LPRN, RPRN_TD, XXXXXXX, XXXXXXX, XXXXXXX
+      XXXXXXX, KC_LCTL, KC_LALT, KC_LGUI, XXXXXXX, XXXXXXX, XXXXXXX, KC_UNDS, KC_LPRN, RPRN_TD, XXXXXXX, XXXXXXX, XXXXXXX
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
     ),
     [_NUM] = LAYOUT(
@@ -166,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
       _______, KC_LCTL, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,  KC_INS, _______,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, DEL_GUI, KC_BSPC,  KC_ENT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+      XXXXXXX, KC_LCTL, KC_LALT, DEL_GUI, KC_BSPC,  KC_ENT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
     ),
     [_FUN] = LAYOUT(
