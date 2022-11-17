@@ -3,6 +3,104 @@
 
 #include "quantum.h"
 
-void my_custom_function(void);
+enum layer_names {
+    _BASE,
+    _SYM,
+    _NUM,
+    _NAV,
+    _FUN
+};
+
+enum custom_keycodes {
+    SCRN2CLP = SAFE_RANGE, // macOS take screenshot to the clip board
+    SCRN2FL,   // macOS take screenshot to a file
+//    Z_MUTE,    // toggle Zoom mute
+    BRC_INST,  // type a pair of braces & move the cursor between them
+    CBR_INST,  // type a pair of curly braces & move the cursor between them
+    CODE_INST, // type a Markdown code fence & move the cursor inside
+    GRV_INST,  // type a pair of backticks & move the cursor between them
+    PRN_INST,  // type a pair of parens move the cursor between them
+    QUO_INST,
+    UP_DIR,
+    LOG_OUT
+};
+
+// Tap Dance declarations
+enum {
+    TD_ESC_CAPS,
+    TD_RBRC,
+    TD_RCBR,
+    TD_RPRN,
+    TD_GRAV,
+    TD_F1,
+    TD_F2,
+    TD_F6,
+    TD_F9,
+    TD_F12,
+};
+
+// Layer Keys
+//#define ESC_L1 LT(1,KC_ESC)
+#define ESC_L1 LT(1, KC_ESC)
+#define G_NUM LT(_NUM, KC_G)
+#define H_SYM LT(_SYM, KC_H)
+#define BS_SYM LT(_SYM, KC_BSPC)
+#define ENT_NUM LT(_NUM, KC_ENT)
+#define SPC_NAV LT(_NAV, KC_SPC)
+#define ESC_FUN LT(_FUN, KC_ESC)
+
+// Mod Tap
+/// Home Row Mods
+#define A_CTL LCTL_T(KC_A)
+#define S_ALT LALT_T(KC_S)
+#define D_GUI LGUI_T(KC_D)
+#define F_SFT LSFT_T(KC_F)
+#define J_SFT RSFT_T(KC_J)
+#define K_GUI RGUI_T(KC_K)
+#define L_CTL RALT_T(KC_L)
+#define SCLN_CTL RCTL_T(KC_SCLN)
+
+/// Others
+#define Z_CTL LCTL_T(KC_Z)
+#define X_ALT LALT_T(KC_X)
+#define DOT_ALT LALT_T(KC_DOT)
+#define SLSH_CTL LCTL_T(KC_SLSH)
+#define DEL_GUI LGUI_T(KC_DEL)
+
+#define ENT_SFT RSFT_T(KC_ENT)
+#define SPC_MEH MEH_T(KC_SPC)
+#define QUOT_MEH MEH_T(KC_QUOT)
+#define QUOT_ALL ALL_T(KC_QUOT)
+#define SCLN_ALL ALL_T(KC_SCLN)
+
+#define CUT LGUI(KC_X)
+#define COPY LGUI(KC_C)
+#define PASTE LGUI(KC_V)
+#define UNDO LGUI(KC_Z)
+#define REDO LSG(KC_Z)
+
+// macOS navigation
+#define MISS_CTL LCTL_T(KC_UP)
+#define LEFT_SPC LCTL_T(KC_LEFT)
+#define RGHT_SPC LCTL_T(KC_RIGHT)
+
+// Shifted Keys
+#define COLON LSFT(KC_SCLN)
+
+// Other shortcuts
+#define BACK LCMD(KC_LBRC)
+#define FWD LCMD(KC_RBRC)
+#define Z_MUTE MEH_T(KC_SPC)
+
+// Tap Dances
+#define GRAV_TD TD(TD_GRAV)
+#define RPRN_TD TD(TD_RPRN)
+#define RBRC_TD TD(TD_RBRC)
+#define RCBR_TD TD(TD_RCBR)
+#define F1_TD TD(TD_F1)
+#define F2_TD TD(TD_F2)
+#define F6_TD TD(TD_F6)
+#define F9_TD TD(TD_F9)
+#define F12_TD TD(TD_F12)
 
 #endif

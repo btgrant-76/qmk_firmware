@@ -1,14 +1,15 @@
 #pragma once
 
-#undef TAPPING_TERM
-#define TAPPING_TERM 150
 #undef PERMISSIVE_HOLD
-#define IGNORE_MOD_TAP_INTERRUPT
-#undef TAPPING_FORCE_HOLD
 #undef RETRO_TAPPING
+#undef TAPPING_FORCE_HOLD
+#undef TAPPING_TERM
+#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_TERM 150
 #define TAP_CODE_DELAY 10
 #define TAP_HOLD_CAPS_DELAY 80
 
+// TODO add RGB matrix
 
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
@@ -22,6 +23,11 @@
     #undef RGBLIGHT_EFFECT_RAINBOW_MOOD
     #undef RGBLIGHT_EFFECT_RGB_TEST
 
+    // TODO is this the right thing to do? should these be here at all?
+    #undef RGBLIGHT_LIMIT_VAL
+    #undef RGBLIGHT_HUE_STEP
+    #undef RGBLIGHT_SAT_STEP
+    #undef RGBLIGHT_VAL_STEP
     #define RGBLIGHT_LIMIT_VAL 120
     #define RGBLIGHT_HUE_STEP 10
     #define RGBLIGHT_SAT_STEP 17
