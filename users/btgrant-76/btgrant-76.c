@@ -12,6 +12,10 @@
  * - waka
  * - crkbd
  * - cococt46plus
+ * TODO: validate that keycodes work as intended
+ * - waka
+ * - crkbd
+ * - cococt46plus
  */
 
 // Tap Dance & macro functions

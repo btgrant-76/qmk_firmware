@@ -11,6 +11,12 @@ enum layer_names {
     _FUN
 };
 
+/*
+ * TODO some of these have been superseded by Tap Dances; search for usage in keymaps
+ * - waka
+ * - crkbd
+ * - cococt46plus
+ */
 enum custom_keycodes {
     SCRN2CLP = SAFE_RANGE, // macOS take screenshot to the clip board
     SCRN2FL,   // macOS take screenshot to a file
@@ -22,7 +28,8 @@ enum custom_keycodes {
     PRN_INST,  // type a pair of parens move the cursor between them
     QUO_INST,
     UP_DIR,
-    LOG_OUT
+    LOG_OUT,
+    NEW_SAFE_RANGE
 };
 
 // Tap Dance declarations

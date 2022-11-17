@@ -19,9 +19,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 #include <stdio.h>
 #include "quantum.h"
+#include "btgrant-76.h"
 
 
 // Defines names for use in layer keycodes and the keymap
+/*
 enum layer_number { // TODO use names that are more appropriate
     _BASE = 0,
     _LOWER = 1,
@@ -29,8 +31,10 @@ enum layer_number { // TODO use names that are more appropriate
     _TRACKBALL = 3,
     _FUNCTION = 4
 };
+*/
 
-enum custom_keycodes {
+/*
+enum custom_keycodes { // FIXME how to deal with this?
     SCRN2CLP = NEW_COCOT_SAFE_RANGE, // macOS take screenshot to the clip board
     SCRN2FL,   // macOS take screenshot to a file
     Z_MUTE,    // toggle Zoom mute
@@ -43,8 +47,10 @@ enum custom_keycodes {
     UP_DIR,
     LOG_OUT
 };
+*/
 
 // Tap Dance declarations
+/*
 enum {
     TD_ESC_CAPS,
     TD_RBRC,
@@ -57,9 +63,11 @@ enum {
     TD_F9,
     TD_F12,
 };
+*/
 
 // Layer Keys
 //#define ESC_L1 LT(1,KC_ESC)
+/*
 #define ESC_L1 LT(1,KC_ESC)
 #define G_NUM LT(1,KC_G)
 #define H_SYM LT(2,KC_H)
@@ -121,6 +129,7 @@ enum {
 #define F6_TD TD(TD_F6)
 #define F9_TD TD(TD_F9)
 #define F12_TD TD(TD_F12)
+*/
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT(
@@ -136,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                  KC_PGUP, KC_BTN3,  KC_PGDOWN, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
-  [_LOWER] = LAYOUT(
+  [_SYM] = LAYOUT(
   //|-----------------------------------------------------|                                       |-----------------------------------------------------|
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                         KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, RCBR_TD,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
@@ -149,7 +158,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                   XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
-  [_RAISE] = LAYOUT(
+  [_NUM] = LAYOUT(
   //|-----------------------------------------------------|                                       |-----------------------------------------------------|
       XXXXXXX, XXXXXXX, XXXXXXX,    BACK,     FWD, XXXXXXX,                                         KC_LBRC,    KC_7,    KC_8,    KC_9, RBRC_TD, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
@@ -162,7 +171,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                   KC_VOLD, KC_MUTE, KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
-  [_TRACKBALL] = LAYOUT(
+  [_NAV] = LAYOUT(
   //|-----------------------------------------------------|                                       |-----------------------------------------------------|
       XXXXXXX,SCRN2CLP, SCRN2FL, XXXXXXX, XXXXXXX,  UP_DIR,                                            REDO,   PASTE,    COPY,     CUT,    UNDO, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
@@ -175,7 +184,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                  LEFT_SPC,MISS_CTL,  RGHT_SPC,       XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
-  [_FUNCTION] = LAYOUT(
+  [_FUN] = LAYOUT(
   //|-----------------------------------------------------|                                       |-----------------------------------------------------|
       XXXXXXX,  F12_TD,   KC_F7,   KC_F8,   F9_TD, XXXXXXX,                                         SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
@@ -190,7 +199,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-// Tap Dance & macro functions
+/*// Tap Dance & macro functions
 void braces_insert(void) {
     SEND_STRING("[]" SS_TAP(X_LEFT));
 };
@@ -326,8 +335,10 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_F9] = ACTION_TAP_DANCE_FN(f9_tap_dance),
     [TD_F12] = ACTION_TAP_DANCE_FN(f12_tap_dance),
 };
+*/
 
 
+/*
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case SCRN2CLP:
@@ -404,6 +415,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
+*/
 
 #ifdef COMBO_ENABLE
 // Combo declarations
@@ -530,25 +542,25 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     #endif
 
     switch (get_highest_layer(state)) {
-    case _LOWER:
+    case _SYM:
         #ifdef RGBLIGHT_ENABLE
         rgblight_sethsv_range(HSV_BLUE, 0, 2);
         #endif
         cocot_set_scroll_mode(true);
         break;
-    case _RAISE:
+    case _NUM:
         #ifdef RGBLIGHT_ENABLE
         rgblight_sethsv_range(HSV_PURPLE, 0, 2);
         #endif
         cocot_set_scroll_mode(true);
         break;
-    case _TRACKBALL:
+    case _NAV:
         #ifdef RGBLIGHT_ENABLE
         rgblight_sethsv_range(HSV_GREEN, 0, 2);
         #endif
         cocot_set_scroll_mode(false);
         break;
-    case _FUNCTION:
+    case _FUN:
         #ifdef RGBLIGHT_ENABLE
         rgblight_sethsv_range(HSV_YELLOW, 0, 2);
         #endif

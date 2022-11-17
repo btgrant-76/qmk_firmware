@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+/*
 #undef TAPPING_TERM
 #define TAPPING_TERM 150
 #undef PERMISSIVE_HOLD
@@ -27,9 +28,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef RETRO_TAPPING
 #define TAP_CODE_DELAY 10
 #define TAP_HOLD_CAPS_DELAY 80
+*/
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 5
 
+/*
 #ifdef RGBLIGHT_ENABLE
     #undef RGBLIGHT_EFFECT_BREATHING
     #undef RGBLIGHT_EFFECT_RAINBOW_MOOD
@@ -42,3 +45,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #undef RGBLIGHT_EFFECT_ALTERNATING
     #define RGBLIGHT_EFFECT_TWINKLE
 #endif
+*/
