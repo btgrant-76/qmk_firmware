@@ -14,8 +14,11 @@
  * - cococt46plus
  * TODO: validate that keycodes work as intended
  * - waka
- * - crkbd
+ * x crkbd
  * - cococt46plus
+ * TODO add RGB matrix from crkbd
+ * TODO move Combo configs
+ * TODO make sure that Tap Dance-specific code uses #ifdef
  */
 
 // Tap Dance & macro functions

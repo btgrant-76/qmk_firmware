@@ -13,22 +13,22 @@ enum layer_names {
 
 /*
  * TODO some of these have been superseded by Tap Dances; search for usage in keymaps
- * - waka
+ * x waka
  * - crkbd
  * - cococt46plus
  */
 enum custom_keycodes {
-    SCRN2CLP = SAFE_RANGE, // macOS take screenshot to the clip board
-    SCRN2FL,   // macOS take screenshot to a file
-//    Z_MUTE,    // toggle Zoom mute
-    BRC_INST,  // type a pair of braces & move the cursor between them
-    CBR_INST,  // type a pair of curly braces & move the cursor between them
-    CODE_INST, // type a Markdown code fence & move the cursor inside
-    GRV_INST,  // type a pair of backticks & move the cursor between them
-    PRN_INST,  // type a pair of parens move the cursor between them
-    QUO_INST,
-    UP_DIR,
-    LOG_OUT,
+    SCRN2CLP = SAFE_RANGE, // macOS take screenshot to the clip board (crkbd: y; waka: ?; cocot46plus: ?)
+    SCRN2FL,   // macOS take screenshot to a file (crkbd: y; waka: ?; cocot46plus: ?)
+//    Z_MUTE,    // toggle Zoom mute (crkbd: n; waka: ?; cocot46plus: ?)
+    BRC_INST,  // type a pair of braces & move the cursor between them (crkbd: n; waka: ?; cocot46plus: ?)
+    CBR_INST,  // type a pair of curly braces & move the cursor between them (crkbd: n; waka: ?; cocot46plus: ?)
+    CODE_INST, // type a Markdown code fence & move the cursor inside (crkbd: n; waka: ?; cocot46plus: ?)
+    GRV_INST,  // type a pair of backticks & move the cursor between them (crkbd: n; waka: ?; cocot46plus: ?)
+    PRN_INST,  // type a pair of parens move the cursor between them (crkbd: n; waka: ?; cocot46plus: ?)
+    QUO_INST, // (crkbd: n; waka: ?; cocot46plus: ?)
+    UP_DIR, // (crkbd: y; waka: ?; cocot46plus: ?)
+    LOG_OUT, // (crkbd: y; waka: ?; cocot46plus: ?)
     NEW_SAFE_RANGE
 };
 
