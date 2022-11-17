@@ -1,5 +1,19 @@
 #include "btgrant-76.h"
 
+
+/*
+ * TODO: clean up code comments removed from Waka profile
+ * TODO:  add/update head/copyright blocks
+ * - userspace
+ * - waka
+ * - crkbd
+ * - cococt46plus
+ * TODO:  make sure there are develop builds for
+ * - waka
+ * - crkbd
+ * - cococt46plus
+ */
+
 // Tap Dance & macro functions
 void braces_insert(void) {
     SEND_STRING("[]" SS_TAP(X_LEFT));

@@ -9,6 +9,14 @@
 #define TAP_CODE_DELAY 10
 #define TAP_HOLD_CAPS_DELAY 80
 
+// from QMK squeezing...
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
+#define NO_ACTION_ONESHOT
+#define NO_MUSIC_MODE
+#define LAYER_STATE_8BIT
+// end QMK squeezing
+
 // TODO add RGB matrix
 
 #ifdef RGBLIGHT_ENABLE
