@@ -87,9 +87,9 @@ enum {
 #define REDO LSG(KC_Z)
 
 // macOS navigation
-#define MISS_CTL LCTL_T(KC_UP)
-#define LEFT_SPC LCTL_T(KC_LEFT)
-#define RGHT_SPC LCTL_T(KC_RIGHT)
+#define MISS_CTL LCTL(KC_UP)
+#define LEFT_SPC LCTL(KC_LEFT)
+#define RGHT_SPC LCTL(KC_RIGHT)
 
 // Shifted Keys
 #define COLON LSFT(KC_SCLN)

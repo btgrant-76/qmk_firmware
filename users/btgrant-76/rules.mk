@@ -4,6 +4,8 @@ TAP_DANCE_ENABLE = yes
 NKRO_ENABLE		= yes
 LTO_ENABLE      = yes
 
+CAPS_WORD_ENABLE = yes
+
 # start space-savings
 AVR_USE_MINIMAL_PRINTF = yes
 COMMAND_ENABLE = no
