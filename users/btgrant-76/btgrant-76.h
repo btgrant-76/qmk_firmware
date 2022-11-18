@@ -12,23 +12,23 @@ enum layer_names {
 };
 
 /*
- * TODO some of these have been superseded by Tap Dances; search for usage in keymaps
- * x waka
- * - crkbd
- * - cococt46plus
+ * [x] some of these have been superseded by Tap Dances; search for usage in keymaps
+ * - [x] waka
+ * - [x] crkbd
+ * - [x] cococt46plus
  */
 enum custom_keycodes {
-    SCRN2CLP = SAFE_RANGE, // macOS take screenshot to the clip board (crkbd: y; waka: ?; cocot46plus: ?)
-    SCRN2FL,   // macOS take screenshot to a file (crkbd: y; waka: ?; cocot46plus: ?)
-//    Z_MUTE,    // toggle Zoom mute (crkbd: n; waka: ?; cocot46plus: ?)
-    BRC_INST,  // type a pair of braces & move the cursor between them (crkbd: n; waka: ?; cocot46plus: ?)
-    CBR_INST,  // type a pair of curly braces & move the cursor between them (crkbd: n; waka: ?; cocot46plus: ?)
-    CODE_INST, // type a Markdown code fence & move the cursor inside (crkbd: n; waka: ?; cocot46plus: ?)
-    GRV_INST,  // type a pair of backticks & move the cursor between them (crkbd: n; waka: ?; cocot46plus: ?)
-    PRN_INST,  // type a pair of parens move the cursor between them (crkbd: n; waka: ?; cocot46plus: ?)
-    QUO_INST, // (crkbd: n; waka: ?; cocot46plus: ?)
-    UP_DIR, // (crkbd: y; waka: ?; cocot46plus: ?)
-    LOG_OUT, // (crkbd: y; waka: ?; cocot46plus: ?)
+    SCRN2CLP = SAFE_RANGE, // macOS take screenshot to the clip board (crkbd: y; waka: y; cocot46plus: y)
+    SCRN2FL,   // macOS take screenshot to a file (crkbd: y; waka: y; cocot46plus: y)
+//    Z_MUTE,    // toggle Zoom mute (crkbd: n; waka: n; cocot46plus: n)
+    BRC_INST,  // type a pair of braces & move the cursor between them (crkbd: n; waka: n; cocot46plus: n)
+    CBR_INST,  // type a pair of curly braces & move the cursor between them (crkbd: n; waka: n; cocot46plus: n)
+    CODE_INST, // type a Markdown code fence & move the cursor inside (crkbd: n; waka: n; cocot46plus: n)
+    GRV_INST,  // type a pair of backticks & move the cursor between them (crkbd: n; waka: n; cocot46plus: n)
+    PRN_INST,  // type a pair of parens move the cursor between them (crkbd: n; waka: n; cocot46plus: n)
+    QUO_INST, // (crkbd: n; waka: n; cocot46plus: n)
+    UP_DIR, // (crkbd: y; waka: y; cocot46plus: y)
+    LOG_OUT, // (crkbd: y; waka: y; cocot46plus: y)
     NEW_SAFE_RANGE
 };
 

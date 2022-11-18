@@ -2,23 +2,26 @@
 
 
 /*
- * TODO: clean up code comments removed from Waka profile
- * TODO:  add/update head/copyright blocks
- * - userspace
- * - waka
- * - crkbd
- * - cococt46plus
- * TODO:  make sure there are develop builds for
- * - waka
- * - crkbd
- * - cococt46plus
- * TODO: validate that keycodes work as intended
- * - waka
- * x crkbd
- * - cococt46plus
- * TODO add RGB matrix from crkbd
- * TODO move Combo configs
- * TODO make sure that Tap Dance-specific code uses #ifdef
+ * [ ] TODO: clean code removed
+ * - [ ] waka
+ * - [ ] crkbd
+ * - [ ] cococt46plus
+ * [ ] TODO:  add/update head/copyright blocks
+ * - [ ] userspace
+ * - [ ] waka
+ * - [ ] crkbd
+ * - [ ] cococt46plus
+ * [x]:  make sure there are develop builds for
+ * - [x] waka
+ * - [x] crkbd
+ * - [x] cococt46plus
+ * [ ] TODO: validate that keycodes work as intended
+ * - [x] waka
+ * - [x] crkbd
+ * - [ ] cococt46plus
+ * [ ] TODO add RGB matrix from crkbd
+ * [ ] TODO move Combo configs
+ * [ ] TODO make sure that Tap Dance-specific code uses #ifdef
  */
 
 // Tap Dance & macro functions
