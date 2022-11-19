@@ -57,7 +57,6 @@ typedef union {
 
 extern cocot_config_t cocot_config;
 
-#ifdef NEW_SAFE_RANGE
 enum cocot_keycodes {
     COCOT_SAFE_RANGE = NEW_SAFE_RANGE,
     CPI_SW,
@@ -67,23 +66,7 @@ enum cocot_keycodes {
     SCRL_MO,
     SCRL_TO,
     SCRL_IN
-/*
-    NEW_COCOT_SAFE_RANGE*/
 };
-#else
-enum cocot_keycodes {
-    COCOT_SAFE_RANGE = SAFE_RANGE,
-    CPI_SW,
-    SCRL_SW,
-    ROT_R15,
-    ROT_L15,
-    SCRL_MO,
-    SCRL_TO,
-    SCRL_IN
-/*
-    NEW_COCOT_SAFE_RANGE*/
-};
-#endif
 
 
 #ifdef VIA_ENABLE
