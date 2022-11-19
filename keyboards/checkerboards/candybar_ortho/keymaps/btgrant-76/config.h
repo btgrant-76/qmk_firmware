@@ -1,4 +1,5 @@
 /* Copyright 2021 Nathan Spears
+ * Copyright 2022 @btgrant-76
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,5 +17,4 @@
 
 #pragma once
 
-#define TAPPING_TOGGLE 2
-#define TAPPING_TERM 200
+#define DYNAMIC_KEYMAP_LAYER_COUNT 5
