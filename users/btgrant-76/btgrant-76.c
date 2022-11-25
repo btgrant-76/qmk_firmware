@@ -1,28 +1,22 @@
+/*
+Copyright 2022 Brian Grant <@btgrant-76>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include "btgrant-76.h"
 
-
-/*
- * [ ] TODO: clean code removed
- * - [ ] waka
- * - [ ] crkbd
- * - [ ] cococt46plus
- * [ ] TODO:  add/update head/copyright blocks
- * - [ ] userspace
- * - [ ] waka
- * - [ ] crkbd
- * - [ ] cococt46plus
- * [x]:  make sure there are develop builds for
- * - [x] waka
- * - [x] crkbd
- * - [x] cococt46plus
- * [ ] TODO: validate that keycodes work as intended
- * - [x] waka
- * - [x] crkbd
- * - [ ] cococt46plus
- * [ ] TODO add RGB matrix from crkbd
- * [ ] TODO move Combo configs
- * [ ] TODO make sure that Tap Dance-specific code uses #ifdef
- */
 
 // Tap Dance & macro functions
 void braces_insert(void) {
@@ -53,6 +47,7 @@ void code_fence(void) {
     SEND_STRING("```" SS_TAP(X_ENT) SS_TAP(X_ENT) "```" SS_TAP(X_UP));
 }
 
+#ifdef TAP_DANCE_ENABLE
 void braces_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         tap_code(KC_RBRC);
@@ -144,8 +139,10 @@ void f12_tap_dance(qk_tap_dance_state_t *state, void *user_data) {
         unregister_code(KC_LGUI);
     }
 }
+#endif // TAP_DANCE_ENABLE
 // END:  Tap Dance & macro functions
 
+#ifdef TAP_DANCE_ENABLE
 // Tap Dance definition
 qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Escape, twice for Caps Lock
@@ -160,6 +157,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_F9] = ACTION_TAP_DANCE_FN(f9_tap_dance),
     [TD_F12] = ACTION_TAP_DANCE_FN(f12_tap_dance),
 };
+#endif // TAP_DANCE_ENABLE
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -238,3 +236,46 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
+
+
+#ifdef COMBO_ENABLE
+// Combo declarations
+enum combos {
+    CB_BRC_INST,
+    CB_CBR_INST,
+    CB_PRN_INST,
+    COMBO_LENGTH
+};
+
+const uint16_t PROGMEM brc_inst[] = {KC_RBRC, KC_LBRC, COMBO_END};
+const uint16_t PROGMEM cbr_inst[] = {KC_RCBR, KC_LCBR, COMBO_END};
+const uint16_t PROGMEM prn_inst[] = {KC_RCBR, KC_LCBR, COMBO_END};
+
+uint16_t COMBO_LEN = COMBO_LENGTH;
+
+combo_t key_combos[] = {
+    [CB_BRC_INST] = COMBO_ACTION(brc_inst),
+    [CB_CBR_INST] = COMBO_ACTION(cbr_inst),
+    [CB_PRN_INST] = COMBO_ACTION(prn_inst),
+};
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch(combo_index) {
+        case CB_BRC_INST:
+            if (pressed) {
+                braces_insert()
+            }
+            break;
+        case CB_CBR_INST:
+            if (pressed) {
+                curly_braces_insert();
+            }
+            break;
+        case CB_PRN_INST:
+            if (pressed) {
+                parens_insert();
+            }
+            break;
+    }
+};
+#endif // COMBO_ENABLED

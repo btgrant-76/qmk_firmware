@@ -1,3 +1,20 @@
+/*
+Copyright 2022 Brian Grant <@btgrant-76>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #ifndef USERSPACE
 #define USERSPACE
 
@@ -20,13 +37,12 @@ enum layer_names {
 enum custom_keycodes {
     SCRN2CLP = SAFE_RANGE, // macOS take screenshot to the clip board (crkbd: y; waka: y; cocot46plus: y)
     SCRN2FL,   // macOS take screenshot to a file (crkbd: y; waka: y; cocot46plus: y)
-//    Z_MUTE,    // toggle Zoom mute (crkbd: n; waka: n; cocot46plus: n)
     BRC_INST,  // type a pair of braces & move the cursor between them (crkbd: n; waka: n; cocot46plus: n)
     CBR_INST,  // type a pair of curly braces & move the cursor between them (crkbd: n; waka: n; cocot46plus: n)
     CODE_INST, // type a Markdown code fence & move the cursor inside (crkbd: n; waka: n; cocot46plus: n)
     GRV_INST,  // type a pair of backticks & move the cursor between them (crkbd: n; waka: n; cocot46plus: n)
     PRN_INST,  // type a pair of parens move the cursor between them (crkbd: n; waka: n; cocot46plus: n)
-    QUO_INST, // (crkbd: n; waka: n; cocot46plus: n)
+    QUO_INST, // (crkbd: n; waka: n; cocot46plus: n)  // TODO set up a tap dance for this
     UP_DIR, // (crkbd: y; waka: y; cocot46plus: y)
     LOG_OUT, // (crkbd: y; waka: y; cocot46plus: y)
     NEW_SAFE_RANGE
@@ -99,6 +115,7 @@ enum {
 #define FWD LCMD(KC_RBRC)
 #define Z_MUTE MEH_T(KC_SPC)
 
+#ifdef TAP_DANCE_ENABLE
 // Tap Dances
 #define GRAV_TD TD(TD_GRAV)
 #define RPRN_TD TD(TD_RPRN)
@@ -109,5 +126,6 @@ enum {
 #define F6_TD TD(TD_F6)
 #define F9_TD TD(TD_F9)
 #define F12_TD TD(TD_F12)
+#endif // TAP_DANCE_ENABLE
 
 #endif
