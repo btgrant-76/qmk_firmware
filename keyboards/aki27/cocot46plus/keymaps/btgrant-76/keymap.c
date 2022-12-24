@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-----------------------------------------------------|                                       |-----------------------------------------------------|
       XXXXXXX,  F12_TD,   KC_F7,   KC_F8,   F9_TD, XXXXXXX,                                        SCRN2CLP, SCRN2FL,  UP_DIR, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
-      LOG_OUT,  KC_F11,   KC_F4,   KC_F5,   F6_TD, XXXXXXX,                                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, SCRL_MO,
+      LOG_OUT,  KC_F11,   KC_F4,   KC_F5,   F6_TD, XXXXXXX,                                         XXXXXXX, XXXXXXX, DT_PRNT,   DT_UP, DT_DOWN, SCRL_MO,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
       _______,  KC_F10,   F1_TD,   F2_TD,   KC_F3, XXXXXXX,                                         SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, SCRL_IN,
   //|--------+--------+--------+--------+--------+--------+--------|                     |--------+--------+--------+--------+--------+--------+--------|
