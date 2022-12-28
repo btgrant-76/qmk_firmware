@@ -4,3 +4,6 @@ VIA_ENABLE      = no    # 2278 bytes
 OLED_ENABLE     = yes
 OLED_DRIVER     = SSD1306
 
+# start space-savings
+MOUSEKEY_ENABLE = no
+# end space-savings
