@@ -143,7 +143,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
 //            extern void register_button(bool, enum mouse_buttons);
 //            register_button(record->event.pressed, MOUSE_BTN_MASK(keycode - KC_MS_BTN1));
             extern void register_mouse(uint8_t mouse_keycode, bool pressed);
-            register_mouse(MOUSE_BTN_MASK(keycode - KC_MS_BTN1), record->event.pressed);
+            register_mouse(MOUSE_BTN_MASK(keycode - KC_MS_BTN1), record->event.pressed);  // TODO is the use of MOUSE_BTN_MASK necessary with the implementation of register_mouse?
             return false;
         }
 #endif
