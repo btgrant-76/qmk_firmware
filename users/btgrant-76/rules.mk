@@ -18,5 +18,3 @@ MOUSEKEY_ENABLE = no
 MUSIC_ENABLE = no
 SPACE_CADET_ENABLE = no
 # end space-savings
-
-BTGRANT_76 = yes
