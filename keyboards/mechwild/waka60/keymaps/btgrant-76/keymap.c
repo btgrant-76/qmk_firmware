@@ -25,9 +25,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
-      ESC_MEH,   A_CTL,   S_ALT,   D_GUI,   F_SFT,    KC_G,             KC_H,   J_SFT,   K_GUI,   L_ALT,SCLN_CTL,QUOT_ALL,
+       KC_ESC,   A_CTL,   S_ALT,   D_GUI,   F_SFT,    KC_G,             KC_H,   J_SFT,   K_GUI,   L_ALT,SCLN_CTL, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,   Z_CTL,   X_ALT,    KC_C,    KC_V,    KC_B, KC_MUTE,    KC_N,    KC_M, KC_COMM, DOT_ALT,SLSH_CTL, ENT_SFT,
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_BSLS, ENT_SFT,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
          BACK, KC_LCTL, KC_LALT, KC_LGUI, BS_SYM,  ENT_NUM,  Z_MUTE,MO(_NUM), SPC_NAV, ESC_FUN,SCRN2CLP, SCRN2FL,     FWD
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-----------------------------------------------------|        |-----------------------------------------------------|
       _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX,    BACK,     FWD, XXXXXXX, XXXXXXX,          KC_LBRC,    KC_7,    KC_8,    KC_9, RBRC_TD, KC_BSPC,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          KC_LBRC,    KC_7,    KC_8,    KC_9, RBRC_TD, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
       XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, RGB_SPI,           KC_EQL,    KC_4,    KC_5,    KC_6, KC_SCLN, KC_PENT,
   //|--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------|
