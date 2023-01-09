@@ -32,9 +32,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
        KC_ESC,   A_CTL,   S_ALT,   D_GUI,   F_SFT,    KC_G,  KC_INS,   KC_P4,   KC_P5,   KC_P6, KC_PGUP,    KC_H,   J_SFT,   K_GUI,   L_ALT,SCLN_CTL, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,  KC_DEL,   KC_P1,   KC_P2,   KC_P3, KC_PGDN,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_BSLS, ENT_SFT,
+      KC_LSFT,   Z_MEH,    KC_X,    KC_C,    KC_V,    KC_B,  KC_DEL,   KC_P1,   KC_P2,   KC_P3, KC_PGDN,    KC_N,    KC_M, KC_COMM,  KC_DOT,SLSH_ALL, ENT_SFT,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
-         BACK, KC_LCTL, KC_LALT, KC_LGUI,  BS_SYM, ENT_NUM,  KC_EQL, KC_LBRC,   TT(1),LT(2, KC_SPC),KC_RBRC,MO(_NUM),SPC_NAV,ESC_FUN,SCRN2CLP,SCRN2FL,    FWD  // TODO this last row needs adjustment in the middle
+         BACK, KC_LCTL, KC_LALT, DEL_FUN, ESC_SYM, TAB_NUM,  KC_EQL, KC_LBRC, XXXXXXX, XXXXXXX, KC_RBRC, ENT_MED, SPC_NAV, BS_MOUS,SCRN2CLP, SCRN2FL,      FWD  // TODO this last row needs adjustment in the middle
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
 ),
 

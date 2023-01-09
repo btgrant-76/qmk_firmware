@@ -56,9 +56,14 @@ enum {
 #define G_NUM LT(_NUM, KC_G)
 #define H_SYM LT(_SYM, KC_H)
 #define BS_SYM LT(_SYM, KC_BSPC)
+#define ESC_SYM LT(_SYM, KC_ESC)
 #define ENT_NUM LT(_NUM, KC_ENT)
+#define TAB_NUM LT(_NUM, KC_TAB)
 #define SPC_NAV LT(_NAV, KC_SPC)
 #define ESC_FUN LT(_FUN, KC_ESC)
+#define DEL_FUN LT(_FUN, KC_DEL)
+#define ENT_MED LT(_NUM, KC_ENT)
+#define BS_MOUS LT(_FUN, KC_BSPC)
 
 // Mod Tap
 /// Home Row Mods
@@ -83,7 +88,9 @@ enum {
 #define QUOT_MEH MEH_T(KC_QUOT)
 #define QUOT_ALL ALL_T(KC_QUOT)
 #define SCLN_ALL ALL_T(KC_SCLN)
+#define SLSH_ALL ALL_T(KC_SLSH)
 #define ESC_MEH MEH_T(KC_ESC)
+#define Z_MEH MEH_T(KC_Z)
 
 #define CUT LGUI(KC_X)
 #define COPY LGUI(KC_C)
