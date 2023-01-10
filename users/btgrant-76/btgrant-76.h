@@ -65,6 +65,34 @@ enum {
 #define ENT_MED LT(_NUM, KC_ENT)
 #define BS_MOUS LT(_FUN, KC_BSPC)
 
+
+// Outer columns
+#undef ENABLE_QAZ
+/// left
+#ifdef ENABLE_QAZ
+#define TAB XXXXXXX
+#define ESC XXXXXXX
+#define L_SFT XXXXXXX
+#else
+#define TAB KC_TAB
+#define ESC KC_ESC
+#define L_SFT KC_LSFT
+#endif
+
+/// right
+#ifdef ENABLE_QAZ
+#define BSPC XXXXXXX
+#define QUOT XXXXXXX
+#define ENT XXXXXXX
+#define ENT_SFT XXXXXXX
+#else
+#define BSPC KC_BSPC
+#define QUOT KC_QUOT
+#define ENT KC_ENT
+#define ENT_SFT RSFT_T(KC_ENT)
+#endif
+// Outer columns end
+
 // Mod Tap
 /// Home Row Mods
 #define A_CTL LCTL_T(KC_A)
@@ -81,10 +109,6 @@ enum {
 #define X_ALT LALT_T(KC_X)
 #define DOT_ALT LALT_T(KC_DOT)
 #define SLSH_CTL LCTL_T(KC_SLSH)
-#define DEL_GUI LGUI_T(KC_DEL)
-
-#define ENT_SFT RSFT_T(KC_ENT)
-#define SPC_MEH MEH_T(KC_SPC)
 #define QUOT_MEH MEH_T(KC_QUOT)
 #define QUOT_ALL ALL_T(KC_QUOT)
 #define SCLN_ALL ALL_T(KC_SCLN)
@@ -92,21 +116,26 @@ enum {
 #define ESC_MEH MEH_T(KC_ESC)
 #define Z_MEH MEH_T(KC_Z)
 
+/// Thumb keys
+#define DEL_GUI LGUI_T(KC_DEL)
+#define SPC_MEH MEH_T(KC_SPC)
+
+// Shortcuts
 #define CUT LGUI(KC_X)
 #define COPY LGUI(KC_C)
 #define PASTE LGUI(KC_V)
 #define UNDO LGUI(KC_Z)
 #define REDO LSG(KC_Z)
 
-// macOS navigation
+/// macOS navigation
 #define MISS_CTL LCTL(KC_UP)
 #define LEFT_SPC LCTL(KC_LEFT)
 #define RGHT_SPC LCTL(KC_RIGHT)
 
-// Shifted Keys
+/// Shifted Keys
 #define COLON LSFT(KC_SCLN)
 
-// Other shortcuts
+/// Other shortcuts
 #define BACK LCMD(KC_LBRC)
 #define FWD LCMD(KC_RBRC)
 #define TAB_LFT LSG(KC_LBRC)
