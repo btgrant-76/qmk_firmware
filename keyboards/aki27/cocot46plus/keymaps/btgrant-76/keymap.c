@@ -25,11 +25,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT(
   //|-----------------------------------------------------|                                       |-----------------------------------------------------|
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                            KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
+          TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                            KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,     BSPC,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
-       KC_ESC,   A_CTL,   S_ALT,   D_GUI,   F_SFT,    KC_G,                                            KC_H,   J_SFT,   K_GUI,   L_ALT,SCLN_CTL, KC_QUOT,
+          ESC,   A_CTL,   S_ALT,   D_GUI,   F_SFT,    KC_G,                                            KC_H,   J_SFT,   K_GUI,   L_ALT,SCLN_CTL,    QUOT,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,   Z_MEH,    KC_X,    KC_C,    KC_V,    KC_B,                                            KC_N,    KC_M, KC_COMM,  KC_DOT,SLSH_ALL, ENT_SFT,
+        L_SFT,   Z_MEH,    KC_X,    KC_C,    KC_V,    KC_B,                                            KC_N,    KC_M, KC_COMM,  KC_DOT,SLSH_ALL,     ENT,
   //|--------+--------+--------+--------+--------+--------+--------|                     |--------+--------+--------+--------+--------+--------+--------|
                                     BACK, DEL_FUN, ESC_SYM, TAB_NUM,   KC_BTN1, KC_BTN2,   ENT_MED, SPC_NAV, BS_MOUS,     FWD,
                              //|-----------------------------------------+--------+------------------------------------------|

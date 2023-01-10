@@ -28,11 +28,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_BASE] = LAYOUT_grid(
   //|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,  KC_NUM,   KC_P7,   KC_P8,   KC_P9, KC_HOME,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+          TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,  KC_NUM,   KC_P7,   KC_P8,   KC_P9, KC_HOME,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    BSPC,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
-       KC_ESC,   A_CTL,   S_ALT,   D_GUI,   F_SFT,    KC_G,  KC_INS,   KC_P4,   KC_P5,   KC_P6, KC_PGUP,    KC_H,   J_SFT,   K_GUI,   L_ALT,SCLN_CTL, KC_QUOT,
+          ESC,   A_CTL,   S_ALT,   D_GUI,   F_SFT,    KC_G,  KC_INS,   KC_P4,   KC_P5,   KC_P6, KC_PGUP,    KC_H,   J_SFT,   K_GUI,   L_ALT,SCLN_CTL,    QUOT,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
-      KC_LSFT,   Z_MEH,    KC_X,    KC_C,    KC_V,    KC_B,  KC_DEL,   KC_P1,   KC_P2,   KC_P3, KC_PGDN,    KC_N,    KC_M, KC_COMM,  KC_DOT,SLSH_ALL, ENT_SFT,
+        L_SFT,   Z_MEH,    KC_X,    KC_C,    KC_V,    KC_B,  KC_DEL,   KC_P1,   KC_P2,   KC_P3, KC_PGDN,    KC_N,    KC_M, KC_COMM,  KC_DOT,SLSH_ALL,     ENT,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
          BACK, KC_LCTL, KC_LALT, DEL_FUN, ESC_SYM, TAB_NUM,  KC_EQL, KC_LBRC, XXXXXXX, XXXXXXX, KC_RBRC, ENT_MED, SPC_NAV, BS_MOUS,SCRN2CLP, SCRN2FL,      FWD  // TODO this last row needs adjustment in the middle
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
