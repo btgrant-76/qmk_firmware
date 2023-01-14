@@ -52,18 +52,19 @@ enum {
 };
 
 // Layer Keys
+#define DEL_FUN LT(_FUN, XXXXXXX) // KC_DEL)
+#define ESC_SYM LT(_SYM, XXXXXXX) // KC_ESC)
+#define TAB_NUM LT(_NUM, XXXXXXX) // KC_TAB)
+#define ENT_MED LT(_NUM, KC_ENT)
+#define SPC_NAV LT(_NAV, KC_SPC)
+#define BS_MOUS LT(_FUN, XXXXXXX) // KC_BSPC)
+
 #define ESC_L1 LT(1, KC_ESC)
 #define G_NUM LT(_NUM, KC_G)
 #define H_SYM LT(_SYM, KC_H)
 #define BS_SYM LT(_SYM, KC_BSPC)
-#define ESC_SYM LT(_SYM, KC_ESC)
-#define ENT_NUM LT(_NUM, KC_ENT)
-#define TAB_NUM LT(_NUM, KC_TAB)
-#define SPC_NAV LT(_NAV, KC_SPC)
 #define ESC_FUN LT(_FUN, KC_ESC)
-#define DEL_FUN LT(_FUN, KC_DEL)
-#define ENT_MED LT(_NUM, KC_ENT)
-#define BS_MOUS LT(_FUN, KC_BSPC)
+#define ENT_NUM LT(_NUM, KC_ENT)
 
 
 // Outer columns
