@@ -1,6 +1,6 @@
 /*
 Copyright 2022 aki27
-pyright 2022 Brian Grant <@btgrant-76>
+pyright 2023 Brian Grant <@btgrant-76>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_BASE] = LAYOUT(
+  [_BASE] = LAYOUT_btgrant(
   //|-----------------------------------------------------|                                       |-----------------------------------------------------|
           TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                            KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,     BSPC,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
@@ -31,12 +31,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
         L_SFT,   Z_MEH,    KC_X,    KC_C,    KC_V,    KC_B,                                            KC_N,    KC_M, KC_COMM,  KC_DOT,SLSH_ALL,     ENT,
   //|--------+--------+--------+--------+--------+--------+--------|                     |--------+--------+--------+--------+--------+--------+--------|
-                                    BACK, DEL_FUN, ESC_SYM, TAB_NUM,   KC_BTN1, KC_BTN2,   ENT_MED, SPC_NAV, BS_MOUS,     FWD,
+                                    BACK,       ___BASE_THUMB_L___,  KC_BTN1, KC_BTN2,   ___BASE_THUMB_R___,     FWD,
                              //|-----------------------------------------+--------+------------------------------------------|
                                                                  KC_PGUP, KC_BTN3,  KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
-  [_SYM] = LAYOUT(
+  [_SYM] = LAYOUT_btgrant(
   //|-----------------------------------------------------|                                       |-----------------------------------------------------|
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                         KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, RCBR_TD,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                   XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
-  [_NUM] = LAYOUT(
+  [_NUM] = LAYOUT_btgrant(
   //|-----------------------------------------------------|                                       |-----------------------------------------------------|
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                         KC_LBRC,    KC_7,    KC_8,    KC_9, RBRC_TD, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                   KC_VOLD, KC_MUTE, KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
-  [_NAV] = LAYOUT(
+  [_NAV] = LAYOUT_btgrant(
   //|-----------------------------------------------------|                                       |-----------------------------------------------------|
       XXXXXXX, TAB_LFT,    BACK,     FWD, TAB_RGT, XXXXXXX,                                            REDO,   PASTE,    COPY,     CUT,    UNDO, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                  LEFT_SPC,MISS_CTL,  RGHT_SPC,       XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
-  [_FUN] = LAYOUT(
+  [_FUN] = LAYOUT_btgrant(
   //|-----------------------------------------------------|                                       |-----------------------------------------------------|
       XXXXXXX, XXXXXXX,  UP_DIR,SCRN2CLP, SCRN2FL, XXXXXXX,                                         XXXXXXX,   KC_F7,   KC_F8,   F9_TD,  F12_TD, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|

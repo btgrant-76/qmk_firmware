@@ -1,7 +1,7 @@
 /*
 Copyright 2019 @foostan
 Copyright 2020 Drashna Jaelre <@drashna>
-Copyright 2022 Brian Grant <@btgrant-76>
+Copyright 2023 Brian Grant <@btgrant-76>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_BASE] = LAYOUT_split_3x6_3(
+  [_BASE] = LAYOUT_btgrant_3x6(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
           TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,     BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -31,11 +31,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         L_SFT,   Z_MEH,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT,SLSH_ALL,     ENT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          DEL_FUN, ESC_SYM, TAB_NUM,    ENT_MED, SPC_NAV,  BS_MOUS
+                                                 ___BASE_THUMB_L___,           ___BASE_THUMB_R___
                                       //`--------------------------'  `--------------------------'
   ),
 
-  [_NUM] = LAYOUT_split_3x6_3(
+  [_NUM] = LAYOUT_btgrant_3x6(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_LBRC,    KC_7,    KC_8,    KC_9, RBRC_TD, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   ),
 
-  [_SYM] = LAYOUT_split_3x6_3(
+  [_SYM] = LAYOUT_btgrant_3x6(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, RCBR_TD,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   ),
 
-  [_NAV] = LAYOUT_split_3x6_3(
+  [_NAV] = LAYOUT_btgrant_3x6(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       XXXXXXX, TAB_LFT,    BACK,     FWD, TAB_RGT,  UP_DIR,                         REDO,   PASTE,    COPY,     CUT,    UNDO, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   ),
 
-  [_FUN] = LAYOUT_split_3x6_3(
+  [_FUN] = LAYOUT_btgrant_3x6(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       XXXXXXX, XXXXXXX,  UP_DIR,SCRN2CLP, SCRN2FL, XXXXXXX,                      XXXXXXX,   KC_F7,   KC_F8,   F9_TD,  F12_TD, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|

@@ -1,5 +1,5 @@
 /*
-Copyright 2022 Brian Grant <@btgrant-76>
+Copyright 2023 Brian Grant <@btgrant-76>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -52,7 +52,8 @@ enum {
 };
 
 // Layer Keys
-#define DEL_FUN LT(_FUN, XXXXXXX) // KC_DEL)
+#define DEL_FUN LT(_FUN, KC_DEL)
+#define BS_SYM LT(_SYM, KC_BSPC)
 #define ESC_SYM LT(_SYM, XXXXXXX) // KC_ESC)
 #define TAB_NUM LT(_NUM, XXXXXXX) // KC_TAB)
 #define ENT_MED LT(_NUM, KC_ENT)
@@ -155,5 +156,13 @@ enum {
 #define F9_TD TD(TD_F9)
 #define F12_TD TD(TD_F12)
 #endif // TAP_DANCE_ENABLE
+
+// portable keymaps
+#define ___BASE_THUMB_L___ DEL_FUN, ESC_SYM, TAB_NUM
+#define ___BASE_THUMB_R___ ENT_MED, SPC_NAV,  BS_MOUS
+
+#define LAYOUT_btgrant_3x6(...) LAYOUT_split_3x6_3(__VA_ARGS__)
+#define LAYOUT_btgrant(...) LAYOUT(__VA_ARGS__)
+// portable keymaps end
 
 #endif
