@@ -180,7 +180,7 @@ enum {
 #define ___SYM_2_L___ KC_CAPS, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX
 #define ___SYM_2_R___ KC_PLUS, KC_DLR, KC_PERC, KC_CIRC, KC_QUOT, KC_TILD
 
-#define ___SYM_3_L___ _______, KC_LCTL, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX
+#define ___SYM_3_L___ _______, KC_LCTL, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX // TODO remove LCTL & LALT
 #define ___SYM_3_R___ KC_PIPE, KC_EXLM, KC_AT, KC_HASH, KC_TILD, XXXXXXX
 
 #define ___SYM_THUMB_L___ XXXXXXX, XXXXXXX, XXXXXXX
@@ -205,7 +205,7 @@ enum {
 #define ___NAV_2_L___ XXXXXXX, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, XXXXXXX
 #define ___NAV_2_R___ KC_LEFT, KC_DOWN, KC_UP,KC_RIGHT, KC_CAPS, XXXXXXX
 
-#define ___NAV_3_L___ _______, KC_LCTL, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX
+#define ___NAV_3_L___ _______, KC_LCTL, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX // TODO remove LCTL & LALT
 #define ___NAV_3_R___ KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_INS, _______
 
 #define ___NAV_THUMB_L___ DEL_GUI, KC_BSPC, KC_ENT
