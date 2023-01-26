@@ -77,13 +77,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
   [_FUN] = LAYOUT_btgrant(
   //|-----------------------------------------------------|                                       |-----------------------------------------------------|
-      XXXXXXX, XXXXXXX,  UP_DIR,SCRN2CLP, SCRN2FL, XXXXXXX,                                         XXXXXXX,   KC_F7,   KC_F8,   F9_TD,  F12_TD, XXXXXXX,
+      /*XXXXXXX, XXXXXXX,  UP_DIR,SCRN2CLP, SCRN2FL, XXXXXXX,*/ ___FUN_1_R___, ___FUN_1_L___,     /*XXXXXXX,   KC_F7,   KC_F8,   F9_TD,  F12_TD, XXXXXXX,*/
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
-      LOG_OUT, XXXXXXX, DT_PRNT,   DT_UP, DT_DOWN, SCRL_MO,                                         XXXXXXX,   KC_F4,   KC_F5,   F6_TD,  KC_F11, XXXXXXX,
+      /*LOG_OUT, XXXXXXX, DT_PRNT,   DT_UP, DT_DOWN,*/          ___FUN_2_R___, SCRL_MO, ___FUN_2_L___, /*XXXXXXX,   KC_F4,   KC_F5,   F6_TD,  KC_F11, XXXXXXX,*/
   //|--------+--------+--------+--------+--------+--------|                                       |--------+--------+--------+--------+--------+--------|
-      SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, SCRL_IN,                                         XXXXXXX,   F1_TD,   F2_TD,   KC_F3,  KC_F10, XXXXXXX,
+      SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, SCRL_IN,                     ___FUN_3_R___,     /*XXXXXXX,   F1_TD,   F2_TD,   KC_F3,  KC_F10, XXXXXXX,*/
   //|--------+--------+--------+--------+--------+--------+--------|                     |--------+--------+--------+--------+--------+--------+--------|
-                                 XXXXXXX, XXXXXXX,  KC_SPC,  KC_TAB,  KC_BTN1, KC_BTN2,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+         XXXXXXX, /*XXXXXXX,  KC_SPC,  KC_TAB,*/ ___FUN_THUMB_L___,  KC_BTN1, KC_BTN2,     ___FUN_THUMB_L___, /*XXXXXXX, XXXXXXX, XXXXXXX,*/ XXXXXXX,
                              //|-----------------------------------------+--------+------------------------------------------|
                                                                   KC_PGUP, KC_BTN3, KC_PGDN,         XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
