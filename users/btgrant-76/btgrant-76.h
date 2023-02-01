@@ -163,7 +163,7 @@ enum {
 
 // portable keymaps
 #define ___HRM_L___        KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT
-#define ___HRM_R___        KC_RCTL, KC_RALT, KC_RGUI, KC_RSFT
+#define ___HRM_R___        KC_RSFT, KC_RGUI, KC_RALT, KC_RCTL
 
 // base
 #define ___BASE_1_L___     TAB,     KC_Q,   KC_W,   KC_E,    KC_R,   KC_T
