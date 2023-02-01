@@ -39,9 +39,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
-#define NO_AUTO_SHIFT_ALPHA
-#define AUTO_SHIFT_TIMEOUT 150
-
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
     #define RGBLIGHT_EFFECT_SNAKE

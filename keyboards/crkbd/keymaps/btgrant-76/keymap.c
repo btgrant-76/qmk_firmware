@@ -315,10 +315,12 @@ void render_bootmagic_status(bool status) {
     }
 }
 
+#endif
+
+
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         set_keylog(keycode, record);
     }
     return true;
 }
-#endif
