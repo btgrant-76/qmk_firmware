@@ -185,7 +185,7 @@ enum {
 
 #define ___BASE_1_R___     ___5BASE_1_R___, BSPC
 #define ___BASE_2_R___     ___5BASE_2_R___, QUOT
-#define ___BASE_3_R___     ___5BASE_3_R___, ENT
+#define ___BASE_3_R___     ___5BASE_3_R___, ENT_SFT
 
 // symbol
 #define ___5SYM_1_L___     XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
