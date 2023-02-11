@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ___5BASE_1_L___,                      XXXXXXX, XXXXXXX,                            ___5BASE_1_R___,
         ___5BASE_2_L___,                      XXXXXXX, XXXXXXX,                            ___5BASE_2_R___,
         ___5BASE_3_L___,                      XXXXXXX, XXXXXXX,                            ___5BASE_3_R___,
-        XXXXXXX, XXXXXXX, KC_BSPC, ___BASE_THUMB_L___, ENT_MED, SPC_NAV, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT
+        XXXXXXX, XXXXXXX,  KC_DEL, ___BASE_THUMB_L___, ENT_MED, SPC_NAV, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT
     ),
     [_NUM] = LAYOUT_btgrant_grid(
         ___5NUM_1_L___,                      XXXXXXX, XXXXXXX,                      ___5NUM_1_R___,
