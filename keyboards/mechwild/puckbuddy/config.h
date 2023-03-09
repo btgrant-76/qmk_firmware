@@ -12,11 +12,17 @@
 
 /* set the tapping term for glidepoint pad to register a tap click */
 //#define CIRQUE_PINNACLE_TAPPING_TERM 0 // This is set to 0 to disable it
+#define CIRQUE_PINNACLE_TAPPING_TERM 95 // This is set to 0 to disable it  // BTG
+
+#define CIRQUE_PINNACLE_TAP_ENABLE
+#define CIRQUE_PINNACLE_SECONDARY_TAP_ENABLE
+#define CIRQUE_PINNACLE_ATTENUATION EXTREG__TRACK_ADCCONFIG__ADC_ATTENUATE_2X // BTG
 
 /* TAPPING_TERM value is used for the CIRQUE_PINNACLE_TAPPING_TERM as well by default
  * defining it this way allows us to easily modify it with DYNAMIC_TAPPING_TERM_ENABLE
  */
-#define TAPPING_TERM 0
+#define TAPPING_TERM 95
+// #define POINTING_DEVICE_GESTURES_SCROLL_ENABLE
 
 /*
  * Keyboard Matrix Assignments
