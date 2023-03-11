@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
+// TODO move my customizations into a keymap supporting VIA
 
 
 /* Define custom font */
@@ -12,17 +13,25 @@
 
 /* set the tapping term for glidepoint pad to register a tap click */
 //#define CIRQUE_PINNACLE_TAPPING_TERM 0 // This is set to 0 to disable it
-#define CIRQUE_PINNACLE_TAPPING_TERM 95 // This is set to 0 to disable it  // BTG
 
+#define CIRQUE_PINNACLE_ATTENUATION EXTREG__TRACK_ADCCONFIG__ADC_ATTENUATE_2X // accommodate the curved overlay
+
+// all modes
 #define CIRQUE_PINNACLE_TAP_ENABLE
-#define CIRQUE_PINNACLE_SECONDARY_TAP_ENABLE
-#define CIRQUE_PINNACLE_ATTENUATION EXTREG__TRACK_ADCCONFIG__ADC_ATTENUATE_2X // BTG
 #define POINTING_DEVICE_GESTURES_SCROLL_ENABLE
+
+// absolute mode
+#define CIRQUE_PINNACLE_POSITION_MODE CIRQUE_PINNACLE_ABSOLUTE_MODE
+#define POINTING_DEVICE_GESTURES_CURSOR_GLIDE_ENABLE
+
+// relative mode
+//#define CIRQUE_PINNACLE_POSITION_MODE CIRQUE_PINNACLE_RELATIVE_MODE
+//#define CIRQUE_PINNACLE_SECONDARY_TAP_ENABLE // only available in relative mode
 
 /* TAPPING_TERM value is used for the CIRQUE_PINNACLE_TAPPING_TERM as well by default
  * defining it this way allows us to easily modify it with DYNAMIC_TAPPING_TERM_ENABLE
  */
-#define TAPPING_TERM 95
+//#define TAPPING_TERM 0
 
 /*
  * Keyboard Matrix Assignments
