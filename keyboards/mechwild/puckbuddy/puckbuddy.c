@@ -3,10 +3,10 @@
 
 #include "puckbuddy.h"
 
+// TODO try overriding these in a keymap
 #ifndef GLIDEPOINT_DPI_OPTIONS
 #    define GLIDEPOINT_DPI_OPTIONS \
-// TODO try overriding these in a keymap
-        { 200, 400, 600, 800, 1000, 1200, 1600, 2000, 2400, 2800 }  // , 3200, 3600
+        { 1600, 200, 400, 600, 800, 1000, 1200, 1600, 2000, 2400 }  // , 2800, 3200, 3600
 #    ifndef GLIDEPOINT_DPI_DEFAULT
 #        define GLIDEPOINT_DPI_DEFAULT 1
 #    endif
