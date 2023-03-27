@@ -27,14 +27,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_PGDN,          KC_LCTL, KC_LALT, KC_LGUI,        ___BASE_THUMB_L___,     ___BASE_THUMB_R___,        KC_RGUI, KC_RALT, KC_RCTL
   ),
   [_NUM] = LAYOUT_btgrant(
-    KC_MUTE, QK_BOOT, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______, KC_DEL,
-    BL_STEP,                                                 ___NUM_1_L___,     ___NUM_1_R___,                                        _______, _______,
-    RGB_MOD,                                                 ___NUM_2_L___,     ___NUM_2_R___,                                                 _______,
-    KC_VOLU,                                                 ___NUM_3_L___,     ___NUM_3_R___,                                        _______,
-    KC_VOLD,          _______, _______, _______,         ___NUM_THUMB_L___,     ___NUM_THUMB_R___,         _______, _______, _______
+     Z_MUTE, QK_BOOT, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______, KC_DEL,
+    _______,                                                 ___NUM_1_L___,     ___NUM_1_R___,                                        _______, _______,
+    _______,                                                 ___NUM_2_L___,     ___NUM_2_R___,                                                 _______,
+    _______,                                                 ___NUM_3_L___,     ___NUM_3_R___,                                        _______,
+    _______,          _______, _______, _______,         ___NUM_THUMB_L___,     ___NUM_THUMB_R___,         _______, _______, _______
   ),
   [_SYM] = LAYOUT_btgrant(
-    _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______, _______,
+    KC_MPLY, _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______, _______,
     _______,                                                 ___SYM_1_L___,     ___SYM_1_R___,                                        _______, _______,
     _______,                                                 ___SYM_2_L___,     ___SYM_2_R___,                                                 _______,
     _______,                                                 ___SYM_3_L___,     ___SYM_3_R___,                                        _______,
@@ -49,9 +49,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_FUN] = LAYOUT_btgrant(
     _______, _______, _______,   TD_F1,   TD_F2,   KC_F3,   KC_F4,   KC_F5,     TD_F6,   KC_F7,   KC_F8,   TD_F9,   KC_F10,   KC_F11,  TD_F12, _______,
-    _______,                                                 ___FUN_1_L___,     ___FUN_1_R___,                                        _______, _______,
-    _______,                                                 ___FUN_2_L___,     ___FUN_2_R___,                                                 _______,
-    _______,                                                 ___FUN_3_L___,     ___FUN_3_R___,                                        _______,
-    _______,          _______, _______, _______,         ___FUN_THUMB_L___,     ___FUN_THUMB_R___,         _______, _______, _______
+    BL_STEP,                                                 ___FUN_1_L___,     ___FUN_1_R___,                                        _______, _______,
+    RGB_MOD,                                                 ___FUN_2_L___,     ___FUN_2_R___,                                                 _______,
+    KC_VOLU,                                                 ___FUN_3_L___,     ___FUN_3_R___,                                        _______,
+    KC_VOLD,          _______, _______, _______,         ___FUN_THUMB_L___,     ___FUN_THUMB_R___,         _______, _______, _______
   ),
 };
+
+#ifdef ENCODER_MAP_ENABLE
+    const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {  // TODO should this be 1?
+        [_BASE] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
+        [_SYM]  = { ENCODER_CCW_CW(KC_MPRV, KC_MNXT) },
+        [_NUM]  = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
+        [_NAV]  = { ENCODER_CCW_CW(BACK, FWD) },
+        [_FUN]  = { ENCODER_CCW_CW(KC_BRID, KC_BRIU) }
+    };
+#endif
