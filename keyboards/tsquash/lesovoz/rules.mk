@@ -2,7 +2,8 @@
 MCU = atmega328p
 
 # Bootloader selection
-BOOTLOADER = USBasp
+# BOOTLOADER = USBasp
+BOOTLOADER = usbasploader # TODO this is the one Mercutio uses; is it the right one?
 
 # Build Options
 #   change yes to no to disable
