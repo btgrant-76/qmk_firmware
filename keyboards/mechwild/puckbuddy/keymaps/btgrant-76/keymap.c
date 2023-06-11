@@ -11,6 +11,9 @@ enum layer_names {
     _FN3
 };
 
+ #undef GLIDEPOINT_DPI_OPTIONS
+ #define GLIDEPOINT_DPI_OPTIONS { 1600, 200, 400, 600, 800, 1000, 1200, 1600, 2000, 2400 }  // , 2800, 3200, 3600
+
 /*   Physical Layout:
  *   /-------------------\
  *   |ENC| 1 | 2 | 3 |ENC|
@@ -29,7 +32,7 @@ enum layer_names {
  *   4,               5,
  *   6,               7,
  *   8,   A, B, C, D, 9,
- *   
+ *
  */
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
