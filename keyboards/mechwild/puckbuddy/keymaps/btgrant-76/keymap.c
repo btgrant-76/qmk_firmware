@@ -1,4 +1,5 @@
 // Copyright 2022 Kyle McCreery (@kylemccreery)
+// Copyright 2023 Brian Grant <@btgrant-76>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include QMK_KEYBOARD_H
@@ -12,7 +13,7 @@ enum layer_names {
 };
 
  #undef GLIDEPOINT_DPI_OPTIONS
- #define GLIDEPOINT_DPI_OPTIONS { 1600, 200, 400, 600, 800, 1000, 1200, 1600, 2000, 2400 }  // , 2800, 3200, 3600
+ #define GLIDEPOINT_DPI_OPTIONS { 1600, 200, 400, 600, 800, 1000, 1200, 1600, 2000, 2400 }
 
 /*   Physical Layout:
  *   /-------------------\
