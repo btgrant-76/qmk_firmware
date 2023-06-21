@@ -23,7 +23,7 @@
         "soft_serial_pin": "D2"
     },
     "processor": "atmega32u4",
-    "bootloader": "atmel-dfu",
+    "bootloader": "caterina",
     "layouts": {
         "LAYOUT": {
             "layout": [
