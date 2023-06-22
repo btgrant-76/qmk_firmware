@@ -37,3 +37,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #define DIODE_DIRECTION COL2ROW
+
+#define I2C_DRIVER I2CD0
