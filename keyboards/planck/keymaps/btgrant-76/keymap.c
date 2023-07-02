@@ -17,7 +17,6 @@
 
 #include QMK_KEYBOARD_H
 #include "btgrant-76.h"
-#include "features/achordion.h"
 
 #ifdef AUDIO_ENABLE
 #    include "muse.h"
@@ -73,35 +72,29 @@ void keyboard_post_init_user(void) {
   //debug_mouse=true;
 }
 
-bool achordion_chord(uint16_t tap_hold_keycode,
-                     keyrecord_t* tap_hold_record,
-                     uint16_t other_keycode,
-                     keyrecord_t* other_record) {
+bool achordion_chord_keymap(uint16_t tap_hold_keycode,
+                            keyrecord_t* tap_hold_record,
+                            uint16_t other_keycode,
+                            keyrecord_t* other_record) {
 
-  switch (tap_hold_keycode) {
-    case D_GUI:
-      if (other_keycode == TAB_FUN) { return true; }
-      break;
-  }
-
-  // Allow layer tap keys on the bottom row to trigger immediately
   switch (tap_hold_record->event.key.row) {
     case 3:
     case 7:
         return true;
     break;
   }
-  return achordion_opposite_hands(tap_hold_record, other_record);
+
+  return false;
 }
 
-bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
+/*bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   if (!process_achordion(keycode, record)) { return false; }
   // If console is enabled, it will print the matrix position and status of each key pressed
 #ifdef CONSOLE_ENABLE
     uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
 #endif
   return true;
-}
+}*/
 
 #ifdef AUDIO_ENABLE
   float plover_song[][2]     = SONG(PLOVER_SOUND);
@@ -114,9 +107,7 @@ uint16_t muse_counter = 0;
 uint8_t muse_offset = 70;
 uint16_t muse_tempo = 50;
 
-void matrix_scan_user(void) {
-// TODO is there a way to disable achordion with a property
-  achordion_task();
+void matrix_scan_keymap(void) {
 #ifdef AUDIO_ENABLE
     if (muse_mode) {
         if (muse_counter == 0) {

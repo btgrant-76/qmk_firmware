@@ -73,6 +73,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     };
 #endif
 
+/*void keyboard_post_init_user(void) {
+  // Customise these values to desired behaviour
+#ifdef CONSOLE_ENABLE
+  debug_enable=true;  // TODO this doesn't seem to be required to use uprintf, but it is likely required for achordion's use of dprintf
+#endif
+  //debug_matrix=true;
+  //debug_keyboard=true;
+  //debug_mouse=true;
+}*/
+
+bool achordion_chord_keymap(uint16_t tap_hold_keycode,
+                            keyrecord_t* tap_hold_record,
+                            uint16_t other_keycode,
+                            keyrecord_t* other_record) {
+  switch (tap_hold_record->event.key.row) {
+    case 3:
+    case 7:
+        return true;
+    break;
+  }
+
+  return false;
+}
+
 #ifdef OLED_ENABLE
 
 bool oled_task_user(void) {

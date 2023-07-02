@@ -16,7 +16,6 @@
  */
 #include QMK_KEYBOARD_H
 #include "btgrant-76.h"
-#include "features/achordion.h"
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -69,33 +68,24 @@ void keyboard_post_init_user(void) {
   //debug_mouse=true;
 }
 
-bool achordion_chord(uint16_t tap_hold_keycode,
-                     keyrecord_t* tap_hold_record,
-                     uint16_t other_keycode,
-                     keyrecord_t* other_record) {
+bool achordion_chord_keymap(uint16_t tap_hold_keycode,
+                            keyrecord_t* tap_hold_record,
+                            uint16_t other_keycode,
+                            keyrecord_t* other_record) {
 
-  switch (tap_hold_keycode) {
-    case D_GUI:
-      if (other_keycode == TAB_FUN) { return true; }
-      break;
-  }
-
-  // Allow layer tap keys on the bottom row to trigger immediately
-  if (tap_hold_record->event.key.row == 3) { return true; }
-
-  return achordion_opposite_hands(tap_hold_record, other_record);
+//  if (tap_hold_record->event.key.row == 3) { return true; }
+  return tap_hold_record->event.key.row == 3;
 }
 
-bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
+/*bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   if (!process_achordion(keycode, record)) { return false; }
   // If console is enabled, it will print the matrix position and status of each key pressed
 #ifdef CONSOLE_ENABLE
     uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
 #endif
   return true;
-}
+}*/
 
-void matrix_scan_user(void) {
+/*void matrix_scan_user(void) {
   achordion_task();
-}
-
+}*/
