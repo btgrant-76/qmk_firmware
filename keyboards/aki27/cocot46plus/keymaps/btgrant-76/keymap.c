@@ -70,6 +70,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     };
 #endif
 
+bool achordion_chord_keymap(uint16_t tap_hold_keycode,
+                            keyrecord_t* tap_hold_record,
+                            uint16_t other_keycode,
+                            keyrecord_t* other_record) {
+
+  switch (tap_hold_record->event.key.row) {
+    case 3:
+    case 8:
+        return true;
+    break;
+  }
+
+  return false;
+}
 
 #ifdef RGBLIGHT_ENABLE
 void keyboard_post_init_user(void) {
