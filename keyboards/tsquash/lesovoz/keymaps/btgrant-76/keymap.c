@@ -70,4 +70,13 @@ bool achordion_chord_keymap(uint16_t tap_hold_keycode,
                             keyrecord_t* other_record) {
 
   return tap_hold_record->event.key.row == 3;
-}
+};
+
+#ifdef COMBO_ENABLE
+const uint16_t PROGMEM test_combo1[] = {KC_A, KC_B, COMBO_END};
+const uint16_t PROGMEM test_combo2[] = {KC_C, KC_D, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(test_combo1, KC_ESC),
+    COMBO(test_combo2, LCTL(KC_Z)), // keycodes with modifiers are possible too!
+};
+#endif

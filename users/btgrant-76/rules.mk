@@ -10,6 +10,8 @@ AUTO_SHIFT_ENABLE = no
 
 LEADER_ENABLE = yes
 
+COMBO_ENABLE = yes
+
 # start space-savings
 # https://docs.qmk.fm/#/squeezing_avr?id=squeezing-the-most-out-of-avr
 LTO_ENABLE      = yes
