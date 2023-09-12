@@ -423,48 +423,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return process_record_keymap(keycode, record);
 };
 
-#ifdef COMBO_ENABLE
-// Combo declarations
-enum combos {
-    CB_BRC_INST,
-    CB_CBR_INST,
-    CB_PRN_INST,
-    COMBO_LENGTH
-};
-
-const uint16_t PROGMEM brc_inst[] = {KC_RBRC, KC_LBRC, COMBO_END};
-const uint16_t PROGMEM cbr_inst[] = {KC_RCBR, KC_LCBR, COMBO_END};
-const uint16_t PROGMEM prn_inst[] = {KC_RCBR, KC_LCBR, COMBO_END};
-
-uint16_t COMBO_LEN = COMBO_LENGTH;
-
-combo_t key_combos[] = {
-    [CB_BRC_INST] = COMBO_ACTION(brc_inst),
-    [CB_CBR_INST] = COMBO_ACTION(cbr_inst),
-    [CB_PRN_INST] = COMBO_ACTION(prn_inst),
-};
-
-void process_combo_event(uint16_t combo_index, bool pressed) {
-    switch(combo_index) {
-        case CB_BRC_INST:
-            if (pressed) {
-                braces_insert();
-            }
-            break;
-        case CB_CBR_INST:
-            if (pressed) {
-                curly_braces_insert();
-            }
-            break;
-        case CB_PRN_INST:
-            if (pressed) {
-                parens_insert();
-            }
-            break;
-    }
-};
-#endif // COMBO_ENABLED
-
 #ifdef TAPPING_TERM_PER_KEY
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
