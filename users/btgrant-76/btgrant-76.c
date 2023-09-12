@@ -16,7 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "btgrant-76.h"
-#include "features/achordion.h"
+//#include "features/achordion.h"
 
 
 // Tap Dance & macro functions
@@ -295,65 +295,65 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   return true;
 };
 
-__attribute__ ((weak))
-bool achordion_chord_keymap(uint16_t tap_hold_keycode,
-                            keyrecord_t* tap_hold_record,
-                            uint16_t other_keycode,
-                            keyrecord_t* other_record) {
-  return false;
-};
-
-
-bool achordion_chord(uint16_t tap_hold_keycode,
-                     keyrecord_t* tap_hold_record,
-                     uint16_t other_keycode,
-                     keyrecord_t* other_record) {
-
-  if (achordion_chord_keymap(tap_hold_keycode, tap_hold_record, other_keycode, other_record)) {
-    return true;
-  }
-
-  switch (tap_hold_keycode) {
-    case D_GUI:
-      switch (other_keycode) {
-        case TAB_FUN:
-        case KC_W:
-        case KC_R:
-        case S_ALT:
-          return true;
-      }
-  }
-
-  return achordion_opposite_hands(tap_hold_record, other_record);
-};
-
-bool achordion_eager_mod(uint8_t mod) {
-  switch (mod) {
-    case MOD_LSFT:
-    case MOD_LGUI:
-    case MOD_LALT:
-      return true;
-
-    default:
-      return false;
-  }
-};
-
-uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
-  switch (tap_hold_keycode) {
-    // left thumb keys
-    case TAB_FUN:
-    case BS_NUM:
-    case ESC_SYM:  // helpful for cocot46plus where this key also triggers scroll mode
-    // right thumb keys
-    case ENT_MOUS:
-    case SPC_NAV:
-    case DEL_MED:
-      return 0;  // Bypass Achordion for these keys.
-  }
-
-  return 1000;
-};
+//__attribute__ ((weak))
+//bool achordion_chord_keymap(uint16_t tap_hold_keycode,
+//                            keyrecord_t* tap_hold_record,
+//                            uint16_t other_keycode,
+//                            keyrecord_t* other_record) {
+//  return false;
+//};
+//
+//
+//bool achordion_chord(uint16_t tap_hold_keycode,
+//                     keyrecord_t* tap_hold_record,
+//                     uint16_t other_keycode,
+//                     keyrecord_t* other_record) {
+//
+//  if (achordion_chord_keymap(tap_hold_keycode, tap_hold_record, other_keycode, other_record)) {
+//    return true;
+//  }
+//
+//  switch (tap_hold_keycode) {
+//    case D_GUI:
+//      switch (other_keycode) {
+//        case TAB_FUN:
+//        case KC_W:
+//        case KC_R:
+//        case S_ALT:
+//          return true;
+//      }
+//  }
+//
+//  return achordion_opposite_hands(tap_hold_record, other_record);
+//};
+//
+//bool achordion_eager_mod(uint8_t mod) {
+//  switch (mod) {
+//    case MOD_LSFT:
+//    case MOD_LGUI:
+//    case MOD_LALT:
+//      return true;
+//
+//    default:
+//      return false;
+//  }
+//};
+//
+//uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+//  switch (tap_hold_keycode) {
+//    // left thumb keys
+//    case TAB_FUN:
+//    case BS_NUM:
+//    case ESC_SYM:  // helpful for cocot46plus where this key also triggers scroll mode
+//    // right thumb keys
+//    case ENT_MOUS:
+//    case SPC_NAV:
+//    case DEL_MED:
+//      return 0;  // Bypass Achordion for these keys.
+//  }
+//
+//  return 1000;
+//};
 
 __attribute__ ((weak))
 void matrix_scan_keymap(void) {
@@ -361,7 +361,7 @@ void matrix_scan_keymap(void) {
 };
 
 void matrix_scan_user(void) {
-  achordion_task();
+//  achordion_task();
   matrix_scan_keymap();
 };
 
@@ -370,7 +370,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event  .pressed, record->event.time, record->tap.interrupted, record->tap.count);
 #endif
 
-  if (!process_achordion(keycode, record)) { return false; }
+//  if (!process_achordion(keycode, record)) { return false; }
 
   switch (keycode) {
 #ifdef CAPS_WORD_ENABLE
