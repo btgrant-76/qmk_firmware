@@ -1,6 +1,12 @@
 {
+    "manufacturer": "galvy",
     "keyboard_name": "vault35ortho",
     "maintainer": "haizeus",
+    "usb": {
+        "device_version": "1.0.0",
+        "pid": "0xD106",
+        "vid": "0x0411"
+    },
     "bootloader": "atmel-dfu",
     "diode_direction": "COL2ROW",
     "features": {

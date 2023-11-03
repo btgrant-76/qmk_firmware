@@ -18,8 +18,6 @@
 #define OLED_TIMEOUT 300000
 
 // ENCODER
-#define ENCODERS_PAD_A { B5 }
-#define ENCODERS_PAD_B { B6 }
 #define ENCODER_DIRECTION_FLIP
 
 // Locking support
