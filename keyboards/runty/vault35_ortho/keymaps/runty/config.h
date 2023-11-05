@@ -1,0 +1,10 @@
+#pragma once
+
+#define COMBO_TERM 50
+#define QUICK_TAP_TERM 0
+#define TAPPING_TERM 175
+#define AUTO_SHIFT_TIMEOUT 150
+#define NO_AUTO_SHIFT_ALPHA
+#define CAPS_WORD_INVERT_ON_SHIFT
+#define UNICODE_TYPE_DELAY 0
+
