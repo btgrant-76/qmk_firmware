@@ -6,6 +6,20 @@
 #define ENCODER_DIRECTION_FLIP
 
 // RGB strip
-#define WS2812_DI_PIN D1 // I have tried D0 as well
-#define RGBLED_NUM 9 // I have tried different numbers here. Right now, it's 9 long, but I have tried smaller numbers because my memory tells me that you can successfully address as few as you like.
+#ifdef RGBLIGHT_ENABLE
+
+#define WS2812_DI_PIN D0
+#define RGBLIGHT_LIMIT_VAL 255 /* The maximum brightness level */
+
+#define RGBLED_NUM 20
+#define RGBLIGHT_EFFECT_ALTERNATING
+#define RGBLIGHT_EFFECT_BREATHING
+#define RGBLIGHT_EFFECT_CHRISTMAS
+#define RGBLIGHT_EFFECT_KNIGHT
 #define RGBLIGHT_EFFECT_RAINBOW_MOOD
+#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#define RGBLIGHT_EFFECT_RGB_TEST
+#define RGBLIGHT_EFFECT_SNAKE
+#define RGBLIGHT_EFFECT_STATIC_GRADIENT
+#define RGBLIGHT_EFFECT_TWINKLE
+#endif // RGB strip
