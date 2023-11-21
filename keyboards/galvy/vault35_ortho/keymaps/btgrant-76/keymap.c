@@ -1,6 +1,4 @@
 #include QMK_KEYBOARD_H
-#include <stdio.h>
-#include <math.h>
 #include "btgrant-76.h"
 
 
@@ -26,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_NUM] = LAYOUT_btgrant(
   //|--------------------------------------------|--------|--------------------------------------------|
-                                   ___5NUM_1_L___, _______,                              ___5NUM_1_R___,
+                                   ___5NUM_1_L___, KC_HOME,                              ___5NUM_1_R___,
   //|--------+--------+--------+--------+--------|--------|--------+--------+--------+--------+--------|
                                    ___5NUM_2_L___, _______,                              ___5NUM_2_R___,
   //|--------+--------+--------+--------+--------|--------|--------+--------+--------+--------+--------|
@@ -37,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_SYM] = LAYOUT_btgrant(
   //|--------------------------------------------|--------|--------------------------------------------|
-                                   ___5SYM_1_L___, _______,                              ___5SYM_1_R___,
+                                   ___5SYM_1_L___, KC_MPLY,                              ___5SYM_1_R___,
   //|--------+--------+--------+--------+--------|--------|--------+--------+--------+--------+--------|
                                    ___5SYM_2_L___, _______,                              ___5SYM_2_R___,
   //|--------+--------+--------+--------+--------|--------|--------+--------+--------+--------+--------|
@@ -74,14 +72,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------|--------|--------+--------+--------+--------+--------|
                                   ___5MSE_2_L___, _______,                             ___5MSE_2_R___,
   //|--------+--------+--------+--------+--------|--------|--------+--------+--------+--------+--------|
-                                  ___5MSE_3_L___, _______,                             ___5MSE_3_R___,
+                                  ___5MSE_3_L___,MISS_CTL,                             ___5MSE_3_R___,
   //|--------+--------+--------+--------+--------|--------|--------+--------+--------+--------+--------|
                                ___MSE_THUMB_L___, _______,          ___MSE_THUMB_R___
                     //|--------+--------+--------+--------+--------+--------+--------|
   ),
   [_ADD] = LAYOUT_btgrant(
   //|--------------------------------------------|--------|--------------------------------------------|
-                                  ___5ADD_1_L___, _______,                             ___5ADD_1_R___,
+                                  ___5ADD_1_L___, QK_BOOT,                             ___5ADD_1_R___,
   //|--------+--------+--------+--------+--------|--------|--------+--------+--------+--------+--------|
                                   ___5ADD_2_L___, _______,                             ___5ADD_2_R___,
   //|--------+--------+--------+--------+--------|--------|--------+--------+--------+--------+--------|
@@ -100,30 +98,24 @@ bool achordion_chord_keymap(uint16_t tap_hold_keycode,
   return tap_hold_record->event.key.row == 3;
 }
 
-// ENCODER
-bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {
-      switch(biton32(layer_state)){
-        case 0:
-          if (clockwise) {
-              tap_code(KC_UP);
-          } else {
-              tap_code(KC_DOWN);
-          }
-          break;
-      }
-    }
-    if (index == 1) {
-      switch(biton32(layer_state)){
-        case 0:
-          if (clockwise) {
-              tap_code(KC_RIGHT);
-          } else {
-              tap_code(KC_LEFT);
-          }
-          break;
-      }
-    }
-    return false;
+#ifdef RGBLIGHT_ENABLE
+void keyboard_post_init(void) {
+    rgblight_enable_noeeprom(); // Enables RGB, without saving settings
+    //rgblight_sethsv_noeeprom(100, 255, 255);
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_TWINKLE);
+    return;
 }
+#endif
 
+#ifdef ENCODER_MAP_ENABLE
+    const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
+        [_BASE] = { ENCODER_CCW_CW(KC_VOLU,  KC_VOLD) },
+        [_NUM]  = { ENCODER_CCW_CW(KC_PGUP,  KC_PGDN) },
+        [_SYM]  = { ENCODER_CCW_CW(KC_MNXT,  KC_MPRV) },
+        [_NAV]  = { ENCODER_CCW_CW(FWD,     BACK) },
+        [_FUN]  = { ENCODER_CCW_CW(KC_BRIU,  KC_BRID) },
+        [_MSE]  = { ENCODER_CCW_CW(RGHT_SPC, LEFT_SPC) },
+        [_ADD]  = { ENCODER_CCW_CW(XXXXXXX,  XXXXXXX) },
+        [_NRM] =  { ENCODER_CCW_CW(KC_VOLU,  KC_VOLD) }
+    };
+#endif

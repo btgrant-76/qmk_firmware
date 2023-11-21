@@ -3,13 +3,11 @@
 #undef ENCODERS_PAD_B
 #define ENCODERS_PAD_A { B5 }
 #define ENCODERS_PAD_B { B6 }
-#define ENCODER_DIRECTION_FLIP
 
 // RGB strip
 #ifdef RGBLIGHT_ENABLE
-
 #define WS2812_DI_PIN D0
-#define RGBLIGHT_LIMIT_VAL 255 /* The maximum brightness level */
+#define RGBLIGHT_LIMIT_VAL 255 /* The maximum brightness level; 255 is max */
 
 #define RGBLED_NUM 20
 #define RGBLIGHT_EFFECT_ALTERNATING

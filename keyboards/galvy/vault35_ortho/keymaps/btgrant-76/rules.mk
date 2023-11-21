@@ -1,4 +1,4 @@
 OLED_ENABLE = no # using OLED pads for RGB, my guy!
 RGBLIGHT_ENABLE = yes
 RGBLIGHT_DRIVER = ws2812
-ENCODER_ENABLE = yes
+ENCODER_MAP_ENABLE = yes

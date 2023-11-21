@@ -1,8 +1,8 @@
 # MCU name
-#MCU = atmega32u4
+MCU = atmega32u4
 
 # Bootloader selection
-#BOOTLOADER = atmel-dfu
+BOOTLOADER = atmel-dfu
 
 # Build Options
 #   change yes to no to disable
@@ -13,9 +13,3 @@ AUDIO_ENABLE = no           # Audio output
 ENCODER_ENABLE = yes
 RGB_MATRIX_ENABLE = no
 LTO_ENABLE = yes
-
-OLED_ENABLE = yes
-WPM_ENABLE = yes
-#COMBO_ENABLE = no
-#QMK_SETTINGS = yes
-KEY_OVERRIDE_ENABLE = no
